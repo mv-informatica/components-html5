@@ -1,0 +1,50 @@
+.datepicker {
+  z-index: 1151 !important;
+}
+.date-field-periodo {
+  padding-top: 3px;
+}
+.date-field-periodo .input-small.form-control {
+  border: 1px solid #ccc;
+  border-radius: 4px !important;
+}
+.date-field-periodo .input-group-addon.calendar {
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.date-field-periodo .input-group-addon.to {
+  background-color: #ffffff !important;
+  border: none;
+}
+.date-field-periodo input.input-small.form-control {
+  padding-right: 0px;
+  text-align: left;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.has-error input.input-small.form-control {
+  border-color: #a94442;
+}
+.has-error .input-group-addon.calendar {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #a94442;
+}
+.has-success .input-group-addon.calendar {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #3c763d;
+}
+.has-success input.input-small.form-control {
+  border-color: #3c763d;
+}
+.bootstrap-timepicker {
+  height: 30px;
+}

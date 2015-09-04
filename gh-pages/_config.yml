@@ -1,0 +1,52 @@
+# name of the software
+name: MV
+# current version of the software
+version: 1.0.0
+# url of the download button
+downloadUrl: https://github.com/MV-INFORMATICA/components-html5/
+
+#highlighter: rouge 
+#for github pages
+
+# list of additional links on the right of the top menu
+headerLinks:
+  - title: GitHub
+    url: https://github.com/MV-INFORMATICA/components-html5
+
+# list if additional links on the footer
+footerLinks:
+  - title: GitHub
+    url: https://github.com/MV-INFORMATICA/components-html5
+  - title: Issues
+    url: https://github.com/MV-INFORMATICA/components-html5/issues?state=open
+
+# header
+header:
+  color1: "#208C81"
+  color2: "#104E70"
+  trianglify: true
+
+# github buttons
+githubButton:
+  user: MV-INFORMATICA
+  repo: components-html5
+
+exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile']
+
+markdown: redcarpet
+#redcarpet:
+#  extensions: fenced_code_blocks
+
+#markdown: kramdown
+#kramdown:
+#  input: GFM
+
+gems:
+  - redcarpet
+  - jemoji
+  - jekyll-redirect-from
+  - jekyll-sitemap
+
+#For deploy on Jekyll
+github:
+  url: "."

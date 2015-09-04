@@ -1,0 +1,10 @@
+[
+	{"id":1,"descricaoFrequencia":"FREQUENCIA DIARIA"},
+	{"id":2,"descricaoFrequencia":"FREQUENCIA SEMANAL"},
+	{"id":3,"descricaoFrequencia":"FREQUENCIA MENSAL"},
+	{"id":4,"descricaoFrequencia":"FREQUENCIA ANUAL"},
+	{"id":5,"descricaoFrequencia":"DUAS VEZES AO DIA"},
+	{"id":6,"descricaoFrequencia":"TRES VEZES AO DIA"},
+	{"id":7,"descricaoFrequencia":"QUATRO VEZES AO DIA"},
+	{"id":8,"descricaoFrequencia":"CINCO VEZES AO DIA"}
+]

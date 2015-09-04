@@ -1,0 +1,121 @@
+---
+layout: default
+title: Guideline JS
+description: Sugestões de boas práticas para o uso de javaScript e jQuery.
+order: 5
+---
+
+<section class="bs-docs-section">
+  <h1 id="guideline-jquery-doc" class="page-header">jQuery</h1>
+
+  <div class="bs-callout bs-callout-danger">
+    <h2>Sempre prefira usar jQuery ao invés de JavaScript Puro !</h2>
+    <p>
+	    Usar javascript puto requer um alto conhecimento da linguagem e de seus conceitos funcionais e de compatibilidade. </br>
+	    Dito isso é sempre recomendável o uso prioritário do jQuery para facilitar a leitura e utilizaçãos dos recursos da linguagem.</br>
+	    Lembrando que na maioria das vezes o jQuery resolve nossos problemas de compatibilidade dos navegadores.
+    </p>
+  </div>
+
+  <p>Sempre utilize seletores em cache.</p>
+{% highlight javascript %}
+//Evite:
+var offset  = $('.my-class').offset();
+var height  = $('.my-class').outerHeight();
+var width   = $('.my-class').outerWidth();
+
+//Prefira:
+var target  = $('.my-class'),
+    offset  = target.offset(),
+    height  = target.outerHeight(),
+    width   = target.outerWidth();
+{% endhighlight %}
+
+  <p>Mais de um evento em um mesmo elemento, evite a repetição de código.</p>
+{% highlight javascript %}
+//Evite:
+$("#longlist li").on("mouseenter", function() {
+	$(this).text("Click me!");
+});
+
+$("#longlist li").on("click", function() {
+	$(this).text("Why did you click me?!");
+});
+
+//Prefira:
+var listItems = $("#longlist li");
+listItems.on({
+    "mouseenter": function() {
+      $(this).text("Click me!");
+    },
+
+    "click": function() {
+      $(this).text("Why did you click me?!");
+    }
+});
+{% endhighlight %}
+
+	<p>Ao dividir uma cadeia em várias linhas é preferível colocar o <code>.</code> no inicio.</p>
+{% highlight javascript %}
+this.someElement()
+  .removeClass('invisible')
+  .find('.placeholder').text('new placeholder');
+{% endhighlight %}
+
+	<p>Ao utilizar ajax tenha preferencia na utilização das chamadas abreviadas pois são mais versobsas.</p>
+{% highlight javascript %}
+//Evite:
+$.ajax({
+  url: url,
+  data: data,
+  success: success,
+  dataType: dataType
+});
+
+//Prefira:
+ $.get( "url", function( data ) {
+  $( ".result" ).html( data );
+})
+  .done(function() {
+    alert( "second success" );
+  })
+  .fail(function() {
+    alert( "error" );
+  })
+  .always(function() {
+    alert( "finished" );
+  });
+
+ // ou
+ $.post( "url", function( data ) {
+  $( ".result" ).html( data );
+})
+  .done(function() {
+    alert( "second success" );
+  })
+  .fail(function() {
+    alert( "error" );
+  })
+  .always(function() {
+    alert( "finished" );
+  });
+{% endhighlight %}
+
+
+<p>Cuidado ao utilizar eventos em elemento que vão sofrer re inserção no DOM, pois tais elementos vão perder todos os eventos de js atrelados ao mesmo. EX: Elementos que vão ser renderizados novamente em retornos ajax.</br>
+Antigamente usavamos o live <a href="http://api.jquery.com/live/" target="_blank"></a> do jQuery para fazer a re indexação dos eventos, porém esse método foi descontinuado. Agora usamos uma variação do <a href="http://api.jquery.com/on/" target="_blank">jQuery.on</a>.
+</p>
+
+{% highlight javascript %}
+//Prefira:
+$( "#dataTable tbody" ).on( "click", "tr", function() {
+  console.log( $( this ).text() );
+});
+
+//Pois se usar da forma listada abaixo o evento será perdido caso as tr's sejam renderizadas novamente
+$( "#dataTable tbody tr" ).on( "click", function() {
+  console.log( $( this ).text() );
+});
+{% endhighlight %}
+
+</section>

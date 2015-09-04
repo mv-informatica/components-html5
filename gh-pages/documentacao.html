@@ -1,0 +1,2194 @@
+---
+layout: default
+title: Componentes
+description: Documentação dos componentes reutilizáveis construídos com base no Thymeleaf, Bootstrap, Html 5, CSS 3 e JS.
+order: 3 
+---
+
+<section class="bs-docs-section">
+  <h1 id="Introdução" class="page-header">Introdução</h1>
+
+  <div class="bs-callout bs-callout-info" id="callout-type-b-i-elems">
+    <h4 id="alternate-elements">Atenção!</h4>
+    <p>
+    	Todos os componentes listados na documentação são formados por um conjunto de de tecnologias que juntas
+    	vão oferecer uma melhoria na agilidade do desenvolvimento de formulários e tela.
+    </p>
+    <p>
+    	Para que seja possível uma boa compreenção do que está por trás dos nossos componentes de front-end é
+    	recomendável que você estudo as tecnologias listadas abaixo:
+    </p>
+	<ul>
+		<li> <b>Twitter Bootstrap</b> - Usado como framework base do nosso front-end, ou seja nosso tema é uma extensão direta dele.
+			<ul>
+				<li> <a href="http://getbootstrap.com/" target="_blank">Documentação</a> </li>
+			</ul>
+	    </li>
+	    </br>
+	    <li> <b>Thymeleaf</b> - É um template engine para XHTML e HTML5 que pode trabalhar tanto em ambientes web e não web. Ele  possui um módulo para integração com Spring MVC, de modo que você pode usá-lo como um substituto das famosas JSP's.
+
+			<ul>
+				<li> <a href="http://www.thymeleaf.org/documentation.html" target="_blank">Documentação</a> </li>
+				<li> <a href="http://itutorial.thymeleaf.org/" target="_blank">Tutorial Interativo</a> </li>
+				<li> <a href="https://github.com/thymeleaf/thymeleaf-extras-eclipse-plugin" target="_blank">Plugin para Eclipse</a> </li>
+			</ul>
+	    </li>
+	    </br>
+	    <li> <b>HTML 5</b> - Nova especificação do HTML.
+
+			<ul>
+				<li> <a href="http://www.w3schools.com/html/html5_intro.asp" target="_blank">Documentação pela W3schools</a> </li>
+				<li> <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML/HTML5" target="_blank">Documentação / Tutoriais pela Mozilla</a> </li>
+			</ul>
+	    </li>
+	    </br>
+	    <li> <b>CSS 3</b> - Nova especificação do CSS.
+
+			<ul>
+				<li> <a href="http://www.w3schools.com/css/css3_intro.asp" target="_blank">Documentação pela W3schools</a> </li>
+				<li> <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank">Documentação / Tutoriais pela Mozilla</a> </li>
+			</ul>
+	    </li>
+ 		</br>
+	    <li> <b>LESS</b> - A linguagem dinâmica de estilos.
+
+			<ul>
+				<li> <a href="http://lesscss.org/" target="_blank">Documentação</a> </li>
+				<li> <a href="http://lesscss.loopinfinito.com.br/" target="_blank">Mini curso</a> </li>
+			</ul>
+	    </li>
+
+	    </br>
+	    <li> <b>JavaScript</b>
+			<ul>
+				<li> <a href="http://www.w3schools.com/js/" target="_blank">Documentação pela W3schools</a> </li>
+				<li> <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank">Documentação / Tutoriais pela Mozilla</a> </li>
+			</ul>
+	    </li>
+
+	    </br>
+	    <li> <b>jQuery</b>
+			<ul>
+				<li> <a href="http://try.jquery.com/" target="_blank">Curso gratuito</a> </li>
+				<li> <a href="http://api.jquery.com/" target="_blank">Documentação</a> </li>
+				<li> <a href="http://www.w3schools.com/jquery/" target="_blank">Documentação pela W3schools</a> </li>
+			</ul>
+	    </li>
+	</ul>
+  </div>
+
+</section>
+
+
+<!-- Temporal ==================================================================================================== -->
+<section class="bs-docs-section">
+  <h1 id="temporal" class="page-header">Temporal</h1>
+
+   <blockquote>
+    Fornecer componentes para entradas do tipo data, período e temporal.
+  </blockquote>
+
+  <h2 id="time-field-doc">Time Field</h2>
+  <p>Time field fornece um componente para entrada de dados temporal como horas, minutos e etc...</p>
+  <p>O componente foi criado usando a lib <a href="http://jdewit.github.io/bootstrap-timepicker/" target="_blank">Bootstrap Timepicker</a></p>
+	<div class="bs-example" >
+		<div class="row">
+		  <div class="col-xs-4 col-md-2">
+				<div class="form-group">
+					<div>
+						<label class="control-label" for="Modulo Server Front Module">
+							<span>Horário</span>
+						</label>
+					</div>
+				
+					<div class="bootstrap-timepicker">
+						<input type="text" class="form-control time-field" id="horarioInicial" data-minute-step="1" data-default-time="false" data-template="false" name="horarioInicial" value="">
+							   
+					    <input type="hidden" class="form-control" id="previous-value-horarioInicial" disabled="disabled" name="horarioInicial" value="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% highlight html %}
+<div class="col-sm-3 col-md-3 col-lg-2">
+	<div th:replace="fragments/layout-temporal :: time-field(
+								field='${objeto.atributo}',
+								idField*=horario, 
+								label=horario, 
+								minuteStep=1,
+								template=false)">
+	</div>
+</div>
+{% endhighlight %}
+
+<h2>Atributos / Opções</h2>
+<p>Atributos com <b>*</b> são obrigatórios.</p>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>label</td>
+          <td>messages.properties</td>
+          <td>String que faz referência ao messages/internacionalização do módulo.</td>
+        </tr>
+
+        <tr>
+          <td>field</td>
+          <td>th:field</td>
+          <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding.</td>
+        </tr>
+
+        <tr>
+          <td>idField*</td>
+          <td>String</td>
+          <td>Id do input, o mesmo deve ser único.</td>
+        </tr>
+
+		    <tr>
+          <td>disabled</td>
+          <td>Boolean</td>
+          <td>Informa se o elemento está desativado ou não.</td>
+        </tr>
+
+        <tr>
+          <td>nameField*</td>
+          <td>String</td>
+          <td>Name do elemento HTML.</td>
+        </tr>
+
+		    <tr>
+          <td>placeholder</td>
+          <td>String</td>
+          <td>Placeholder do input.</td>
+        </tr>
+
+        <tr>
+          <td>required</td>
+          <td>Boolean</td>
+          <td>Informa se o elemento é obrigatório ou não.</td>
+        </tr>
+
+        <tr>
+          <td>autofocus</td>
+          <td>Boolean</td>
+          <td>Define foco automático no input.</td>
+        </tr>
+
+		    <tr>
+          <td>minute-step</td>
+          <td>Integer</td>
+          <td>Define o a iteração dos minutos. Ex: minute-step=5, só valores de 5 em 5.</td>
+        </tr>
+        
+        <tr>
+          <td>template</td>
+          <td>Boolean</td>
+          <td>Recomendado false. Para mais informações veja a documentação no tópico <a href="http://jdewit.github.io/bootstrap-timepicker/" target="_blank">template</a>.</td>
+        </tr>
+
+        <tr>
+          <td>dataBind</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para o lemento. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<!-- Date-Field ================================================================================================= -->
+<h2 id="date-field-doc">Date Field</h2>
+<p>Date field fornece um componente para entrada de datas no formato: dd/mm/yyyy</p>
+
+<p>O componente foi criado usando a libs: <a href="http://bootstrap-datepicker.readthedocs.org/" target="_blank">Bootstrap datepicker</a>, <a href="http://bootstrapvalidator.com" target="_blank">Bootstrap Validator</a>
+  </p>
+  <div class="bs-example" >
+    <div class="row">
+
+      <div class="col-xs-4">
+        <div class="date-field form-group">
+          <div>
+            <label class="control-label required" for="dataConsulta" id="dataConsultaLabel">
+              <span>Data da Consulta</span>
+            </label>
+          </div>
+          
+          <div class="input-group date ui-datepicker date-field">
+            <input type="text" class="form-control data-field-input" id="dataConsulta" name="dataConsulta" data-bv-notempty="true" autocomplete="off" data-bv-field="dataConsulta">
+            
+            <span class="input-group-addon btn" id="iconeDateField">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% highlight html %}
+<div class="col-xs-4">
+  <div th:replace="fragments/layout-temporal :: date-field(
+                                                            field='${objeto.dataConsulta}', 
+                                                            idField*='dataConsulta',
+                                                            label=dataConsulta, 
+                                                            idIcon=iconeDateField, 
+                                                            required=true">)">
+  </div>
+</div>
+{% endhighlight %}
+
+<h2>Atributos / Opções</h2>
+<p>Atributos com <b>*</b> são obrigatórios.</p>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>label</td>
+          <td>messages.properties</td>
+          <td>String que faz referência ao messages/internacionalização do módulo.</td>
+        </tr>
+
+        <tr>
+          <td>field</td>
+          <td>th:field</td>
+          <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding.</td>
+        </tr>
+
+        <tr>
+          <td>idField*</td>
+          <td>String</td>
+          <td>Id do input, o mesmo deve ser único.</td>
+        </tr>
+
+        <tr>
+          <td>disabled</td>
+          <td>Boolean</td>
+          <td>Informa se o elemento está desativado ou não.</td>
+        </tr>
+
+        <tr>
+          <td>nameField*</td>
+          <td>String</td>
+          <td>Name do elemento HTML.</td>
+        </tr>
+
+         <tr>
+          <td>placeholder</td>
+          <td>String</td>
+          <td>Placeholder do input.</td>
+        </tr>
+
+        <tr>
+          <td>required</td>
+          <td>Boolean</td> 
+          <td>Informa se o elemento é obrigatório ou não.</td>
+        </tr>
+        
+        <tr>
+          <td>autofocus</td>
+          <td>Boolean</td>
+          <td>Define foco automático no input.</td>
+        </tr>
+
+        <tr>
+          <td>withLabel</td>
+          <td>Boolean</td>
+          <td>Define ser haverá label ou não.</td>
+        </tr>
+
+        <tr>
+          <td>idIcon</td>
+          <td>String</td>
+          <td>Id do icone do calendário.</td>
+        </tr>
+
+        <tr>
+          <td>disabledIcon</td>
+          <td>String</td>
+          <td>Id do icone do calendário.</td>
+        </tr>
+
+        <tr>
+          <td>startDate</td>
+          <td>String</td>
+          <td>Data inicial do calendário.</td>
+        </tr>
+
+        <tr>
+          <td>endDate</td>
+          <td>String</td>
+          <td>Data final do calendário.</td>
+        </tr>
+
+        <tr>
+          <td>dataBind</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para o lemento. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<!-- Date-Field-Peiodo================================================================================================= -->
+<h2 id="date-field-periodo-docs">Date Field Periodo</h2>
+<p>Date field fornece um conjunto de componentes para entrada de períodos de datas no formato: dd/mm/yyyy</p>
+<p>Ao selecinar a primeira data a segunda só permitirá data apartir da data selecionada inicialmente.</p>
+</br>
+<p>O componente foi criado usando a libs: <a href="http://bootstrap-datepicker.readthedocs.org/" target="_blank">Bootstrap datepicker</a>, <a href="http://bootstrapvalidator.com" target="_blank">Bootstrap Validator</a>
+  </p>
+  <div class="bs-example" >
+    <div class="row">
+      <form id="formDateFieldPeriodo">
+        <div class="col-xs-6">
+          <div class="date-field-periodo input-daterange form-group pull-left">
+            <label class="input-group control-label required" for="Modulo Server Front Module" id="dataInicioLabel">
+              <span>Período de datas</span>
+            </label>
+            <div class="input-group date">
+              <input class="input-small form-control create-date-picker-start-date" type="text" id="dataInicio" data-bv-notempty="true" data-idform="listForm" data-requiredperiodo="true" name="horarioInicial" value="" autocomplete="off" data-bv-field="horarioInicial">
+
+              <div class="input-group-addon calendar btn startDate" data-target="dataInicio">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </div>
+              
+              <span class="input-group-addon to">&nbsp; a &nbsp;</span>
+               
+              <input class="input-small form-control create-date-picker-end-date" type="text" id="dataFim" data-idform="formDateFieldPeriodo" data-requiredPeriodoEndDate="true"name="horarioInicial" value="" autocomplete="off" data-bv-field="horarioInicial">
+               
+              <div class="input-group-addon calendar btn endDate" data-target="dataFim">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </div>
+            </div>
+            <small class="help-block" data-bv-validator="notEmpty" data-bv-for="horarioInicial" data-bv-result="NOT_VALIDATED" style="display: none;">Por favor insira um valor</small>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% highlight html %}
+<div class="col-xs-4">
+  <div th:replace="fragments/layout-temporal :: date-field-periodo(
+                                                                    idField*='dataInicio', 
+                                                                    idField*EndDate='dataFim', 
+                                                                    label=periodoDatas, 
+                                                                    field='${objeto.dataDeInicio}', 
+                                                                    fieldEndDate='${objeto.dataFinal}', 
+                                                                    idForm='formDateFieldPeriodo',
+                                                                    required=true,
+                                                                    requiredEndDate=true)">
+  </div>
+</div>
+{% endhighlight %}
+
+<h2>Atributos / Opções</h2>
+<p>Atributos com <b>*</b> são obrigatórios.</p>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>label</td>
+          <td>messages.properties</td>
+          <td>String que faz referência ao messages/internacionalização do módulo.</td>
+        </tr>
+
+        <tr>
+          <td>field</td>
+          <td>th:field</td>
+          <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding da primeira data.</td>
+        </tr>
+
+        <tr>
+          <td>fieldEndDate</td>
+          <td>th:field</td>
+          <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding da segunda data.</td>
+        </tr>
+
+        <tr>
+          <td>idField*</td>
+          <td>String</td>
+          <td>Id do input da primeira data, o mesmo deve ser único.</td>
+        </tr>
+
+        <tr>
+          <td>idField*EndDate</td>
+          <td>String</td>
+          <td>Id do input da segunda data, o mesmo deve ser único.</td>
+        </tr>
+
+        <tr>
+          <td>placeholder</td>
+          <td>String</td>
+          <td>Placeholder da primeira data.</td>
+        </tr>
+
+        <tr>
+          <td>placeholderEndDate</td>
+          <td>String</td>
+          <td>Placeholder da segunda data.</td>
+        </tr>
+
+        <tr>
+          <td>required</td>
+          <td>Boolean</td> 
+          <td>Informa se a primeira data do período é obrigatório ou não.</td>
+        </tr>
+        
+        <tr>
+          <td>requiredEndDate</td>
+          <td>Boolean</td> 
+          <td>Informa se a segunda data do período é obrigatório ou não.</td>
+        </tr>
+        
+        <tr>
+          <td>autofocus</td>
+          <td>Boolean</td>
+          <td>Define foco automático na primeira data.</td>
+        </tr>
+
+        <tr>
+          <td>autofocusEndDate</td>
+          <td>Boolean</td>
+          <td>Define foco automático no input da segunda data.</td>
+        </tr>
+  
+        <tr>
+          <td>startDate</td>
+          <td>String</td>
+          <td>Data inicial do calendário.</td>
+        </tr>
+
+        <tr>
+          <td>endDate</td>
+          <td>String</td>
+          <td>Data final do calendário.</td>
+        </tr>
+
+        <tr>
+          <td>disabledEndDate</td>
+          <td>Boolean</td>
+          <td>Informa se a segunda data está ativa ou não.</td>
+        </tr>
+
+        <tr>
+          <td>dataBindStartDate</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para a primeira data. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+        </tr>
+
+        <tr>
+          <td>dataBindEndDate</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para a segunda data. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="bs-docs-section">
+  <h1 id="inputs" class="page-header">Input</h1>
+
+   <blockquote>
+    Fornecer componentes como autocomplete, inputs do tipo texto e numérico.
+  </blockquote>
+
+  <div class="bs-callout bs-callout-warning">
+    <h2 id="input-helper-doc">Helper class</h2>
+    <p>Segue algumas classes para auxiliar a criação de determinados tipos de inputs para entradas de dados específicos.</p>
+    <ul>
+      <li>
+        <code>.numbersOnly'</code> - Para campos que permitem apenas números.
+      </li>
+      <li>
+        <code>.cns'</code> - Formatação para campos CNS. EX: 999.9999.9999.9999;
+      </li>
+      <li>
+        <code>.cpf'</code> - Formatação para campos CPF. EX: 999.999.999-99;
+      </li>
+    </ul>
+  </div>
+
+  <h2 id="text-field-doc">Text field</h2>
+  <p>Text field fornece um componente para entrada de dados do tipo texto.</p>
+
+  <div class="bs-example" >
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group">
+          <div>
+            <label class="control-label" id="descFrequenciaLabel">
+              <span>Texto</span>
+            </label>
+          </div>
+          
+          <div> 
+            <input type="text" class="form-control" id="descFrequencia" maxlength="50" autocomplete="off" name="descricaoFrequencia" value="" data-bv-field="descricaoFrequencia">
+          </div>
+          <small class="help-block" data-bv-validator="stringLength" data-bv-for="descricaoFrequencia" data-bv-result="NOT_VALIDATED" style="display: none;">
+            Por favor insira um valor com comprimento válido
+          </small>
+        </div>  
+      </div>
+    </div>
+  </div>
+{% highlight html %}
+<div class="col-xs-4">
+  <div th:replace="fragments/layout-input :: text-field(
+                                                        idField*=idText, 
+                                                        label=labelText, 
+                                                        maxLength=50,
+                                                        field='${object.atribute}')">
+  </div>
+</div>
+{% endhighlight %}
+
+<h2>Atributos / Opções</h2>
+<p>Atributos com <b>*</b> são obrigatórios.</p>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <colgroup>
+      <col class="col-xs-1">
+      <col class="col-xs-1">
+      <col class="col-xs-7">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Atributo</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>label</td>
+        <td>messages.properties</td>
+        <td>String que faz referência ao messages/internacionalização do módulo.</td>
+      </tr>
+
+      <tr>
+        <td>field</td>
+        <td>th:field</td>
+        <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding.</td>
+      </tr>
+
+      <tr>
+        <td>idField*</td>
+        <td>String</td>
+        <td>Id do input, o mesmo deve ser único.</td>
+      </tr>
+
+      <tr>
+        <td>disabled</td>
+        <td>Boolean</td>
+        <td>Informa se o elemento está desativado ou não.</td>
+      </tr>
+
+      <tr>
+        <td>nameField*</td>
+        <td>String</td>
+        <td>Name do elemento HTML.</td>
+      </tr>
+
+      <tr>
+        <td>placeholder</td>
+        <td>String</td>
+        <td>Placeholder do input.</td>
+      </tr>
+
+      <tr>
+        <td>required</td>
+        <td>Boolean</td>
+        <td>Informa se o elemento é obrigatório ou não.</td>
+      </tr>
+      
+      <tr>
+        <td>autofocus</td>
+        <td>Boolean</td>
+        <td>Define foco automático no input.</td>
+      </tr>
+
+      <tr>
+        <td>maxLength</td>
+        <td>Integer</td>
+        <td>Qunatidade máxima de caracteres.</td>
+      </tr>
+
+      <tr>
+        <td>readonly</td>
+        <td>Boolean</td>
+        <td>Define se o campo é somente leitura.</td>
+      </tr>
+
+      <tr>
+        <td>autocomplete</td>
+        <td>Boolean</td>
+        <td>Habilita autocmoplete do html.</td>
+      </tr>
+
+      <tr>
+        <td>numRows</td>
+        <td>Integer</td>
+        <td>Caso esse atributo seja declara o input será substituido por uma textarea onde a quantidade de linhas 
+        será definida pelo numRows.</td>
+      </tr>
+
+      <tr>
+        <td>addClass</td>
+        <td>String</td>
+        <td>String que será adicionada ao class do container do input.</td>
+      </tr>
+
+      <tr>
+        <td>pattern</td>
+        <td>Expressão regular</td>
+        <td>Expressão regular aplicada ao input. Mais informações no <a href="http://www.w3schools.com/tags/att_input_pattern.asp" target="_blank">aqui</a>. </td>
+      </tr>
+
+      <tr>
+        <td>dataBind</td>
+        <td>String</td>
+        <td>Atributo que referencia o bind knockoutjs para o lemento. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<h2 id="text-number-field-doc">Text Number field</h2>
+  <p>Text Number Field fornece um componente para entrada de dados numéricos em um input text.</p>
+
+  <div class="bs-example" >
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group">
+          <div>
+            <label class="control-label" id="periodicidadeHorasLabel">
+              <span>Numérico</span>
+            </label>
+          </div>
+          
+          <div>
+            <input type="text" class="form-control numbersOnly" data-fv-notempty-message="The gender is required" id="numerico" maxlength="2" autocomplete="off" name="periodicidade" value="" data-bv-field="periodicidade"> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% highlight html %}
+<div class="col-xs-4">
+  <div th:replace="fragments/layout-input :: text-number-field(
+                                                                idField*=idNumerico, 
+                                                                label=labelNumerico, 
+                                                                field='${object.atribute}',
+                                                                minValue=1, 
+                                                                maxLength=2, 
+                                                                maxValue=24)">
+  </div>
+</div>
+{% endhighlight %}
+
+<h2>Atributos / Opções</h2>
+<p>Atributos com <b>*</b> são obrigatórios.</p>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <colgroup>
+      <col class="col-xs-1">
+      <col class="col-xs-1">
+      <col class="col-xs-7">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Atributo</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr>
+        <td>label</td>
+        <td>messages.properties</td>
+        <td>String que faz referência ao messages/internacionalização do módulo.</td>
+      </tr>
+
+      <tr>
+        <td>field</td>
+        <td>th:field</td>
+        <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding.</td>
+      </tr>
+
+      <tr>
+        <td>idField*</td>
+        <td>String</td>
+        <td>Id do input, o mesmo deve ser único.</td>
+      </tr>
+
+      <tr>
+        <td>disabled</td>
+        <td>Boolean</td>
+        <td>Informa se o elemento está desativado ou não.</td>
+      </tr>
+
+      <tr>
+        <td>nameField*</td>
+        <td>String</td>
+        <td>Name do elemento HTML.</td>
+      </tr>
+
+      <tr>
+        <td>placeholder</td>
+        <td>String</td>
+        <td>Placeholder do input.</td>
+      </tr>
+
+      <tr>
+        <td>required</td>
+        <td>Boolean</td>
+        <td>Informa se o elemento é obrigatório ou não.</td>
+      </tr>
+      
+      <tr>
+        <td>autofocus</td>
+        <td>Boolean</td>
+        <td>Define foco automático no input.</td>
+      </tr>
+
+      <tr>
+        <td>maxLength</td>
+        <td>Integer</td>
+        <td>Qunatidade máxima de caracteres.</td>
+      </tr>
+
+      <tr>
+        <td>readonly</td>
+        <td>Boolean</td>
+        <td>Define se o campo é somente leitura.</td>
+      </tr>
+
+      <tr>
+        <td>autocomplete</td>
+        <td>Boolean</td>
+        <td>Habilita autocmoplete do html.</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<h2 id="number-field-doc">Number field</h2>
+  <p>Number Field fornece um componente para entrada de dados numéricos.</p>
+
+  <div class="bs-example" >
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group number-field">
+            <div>
+              <label class="control-label" id="numericoLabel">
+                <span>Campo Numérico</span>
+              </label>
+            </div>
+            
+            <div>
+              <input type="number" class="form-control" id="periodicidadeHoras" maxlength="2" min="1" max="24" name="idNumericoField" value="" data-bv-field="idNumericoField">
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% highlight html %}
+<div class="col-xs-4">
+  <div th:replace="fragments/layout-input :: number-field(
+                                                          idField*=idNumerico, 
+                                                          label=labelNumerico, 
+                                                          field='${object.atribute}',
+                                                          minValue=1, 
+                                                          maxLength=2, 
+                                                          maxValue=24)">
+  </div>
+</div>
+{% endhighlight %}
+
+<h2>Atributos / Opções</h2>
+<p>Atributos com <b>*</b> são obrigatórios.</p>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <colgroup>
+      <col class="col-xs-1">
+      <col class="col-xs-1">
+      <col class="col-xs-7">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Atributo</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>label</td>
+        <td>messages.properties</td>
+        <td>String que faz referência ao messages/internacionalização do módulo.</td>
+      </tr>
+
+      <tr>
+        <td>field</td>
+        <td>th:field</td>
+        <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding.</td>
+      </tr>
+
+      <tr>
+        <td>idField*</td>
+        <td>String</td>
+        <td>Id do input, o mesmo deve ser único.</td>
+      </tr>
+
+      <tr>
+        <td>disabled</td>
+        <td>Boolean</td>
+        <td>Informa se o elemento está desativado ou não.</td>
+      </tr>
+
+      <tr>
+        <td>nameField*</td>
+        <td>String</td>
+        <td>Name do elemento HTML.</td>
+      </tr>
+
+      <tr>
+        <td>placeholder</td>
+        <td>String</td>
+        <td>Placeholder do input.</td>
+      </tr>
+
+      <tr>
+        <td>required</td>
+        <td>Boolean</td>
+        <td>Informa se o elemento é obrigatório ou não.</td>
+      </tr>
+      
+      <tr>
+        <td>autofocus</td>
+        <td>Boolean</td>
+        <td>Define foco automático no input.</td>
+      </tr>
+
+      <tr>
+        <td>minValue</td>
+        <td>Numérico</td>
+        <td>Especifica um valor mínimo para o input. Mais informações <a href="http://www.w3schools.com/tags/att_input_min.asp" target="_blank"> aqui</a>.</td>
+      </tr>
+
+      <tr>
+        <td>maxValue</td>
+        <td>Numérico</td>
+        <td>Especifica um valor mínimo para o input. Mais informações <a href="http://www.w3schools.com/tags/att_input_min.asp" target="_blank"> aqui</a>.</td>
+      </tr>
+
+      <tr>
+        <td>maxLength</td>
+        <td>Numérico</td>
+        <td>Especifica quantidade máxima de caracteres do input.<a href="http://www.w3schools.com/tags/att_input_maxlength.asp" target="_blank"> aqui</a>.</td>
+      </tr>
+
+      <tr>
+        <td>onchange</td>
+        <td>Função</td>
+        <td>Nome da funação que será invocada no evento onchange do input, caso os valores sejam modificados.</td>
+      </tr>
+
+      <tr>
+        <td>dataBind</td>
+        <td>String</td>
+        <td>Atributo que referencia o bind knockoutjs para o lemento. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<h2 id="autocomplete-doc">Autocomplete</h2>
+  <p>Fornece um autocomplete baseado em dois elementos inputs, um que mostra as descrições e outro hidden que armazena o identificador.</p>
+
+  <p>O componente foi criado usando a lib: <a href="https://twitter.github.io/typeahead.js/" target="_blank">Typeahead.js</a>, na versão: 0.10.5;
+
+  <div class="bs-example" >
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group">
+          <div>
+            <label class="control-label required" for="idChrListTipoFrequencia" id="idChrListTipoFrequenciaLabel">
+              <span>Tipo Frequência</span>
+            </label>
+          </div>
+        
+          <div class="form-group">
+            <input type="text" class="form-control typeahead input-autocomplete" id="idChrListTipoFrequencia" name="idChrListTipoFrequencia" data-objeto="idChrListTipoFrequencia" data-lista="listTipoFrequencia" data-onselected="datum.id" data-idhidden="idTipoFrequenciaHidden" data-url="{{site.github.url}}/assets/data/tipoFrequencia.json" data-possuiparametros="false" data-funcaonome="selectedTipoFrequencia">
+            <input class="input-autocomplete" required="required" name="id" hidden="hidden" id="idTipoFrequenciaHidden" data-bv-notempty="true" data-bv-excluded="false" data-objeto="idChrListTipoFrequencia" data-lista="listTipoFrequencia" data-onselected="datum.id" data-idhidden="idTipoFrequenciaHidden" data-url="{{site.github.url}}/assets/data/tipoFrequencia.json" data-possuiparametros="false" data-funcaonome="selectedTipoFrequencia" value="" data-bv-field="id">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% highlight html %}
+<div class="col-xs-4">
+  <div th:replace="fragments/layout-input :: autocomplete(
+                                                        label=descricao,
+                                                        list='listTipoFrequencia',  
+                                                        urlServer='/module/controller/action?parametro=%QUERY',
+                                                        field=${tipoFrequencia.descricaoFrequencia},
+                                                        idField*='idChrListTipoFrequencia',
+                                                        fieldHidden='${tipoFrequencia.id}',
+                                                        idHidden='idTipoFrequenciaHidden', 
+                                                        nameHidden='nameTipoFrequenciaHidden', 
+                                                        fncName='selectedTipoFrequencia',
+                                                        onSelected='datum.id',
+                                                        maxLength=250, 
+                                                        required=true)">
+  </div>
+</div>
+{% endhighlight %}
+
+<p>Javascript auxiliar para o componente:</p>
+{% highlight javascript %}
+var selectedTipoFrequencia = function(object) {
+  return {
+    value : object.descricaoFrequencia,
+    id : object.id,
+    "tipoFrequencia" : object
+  }
+}
+{% endhighlight %}
+
+<h2>Atributos / Opções</h2>
+<p>Atributos com <b>*</b> são obrigatórios.</p>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <colgroup>
+      <col class="col-xs-1">
+      <col class="col-xs-1">
+      <col class="col-xs-7">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Atributo</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>label</td>
+        <td>messages.properties</td>
+        <td>String que faz referência ao messages/internacionalização do módulo.</td>
+      </tr>
+
+      <tr>
+        <td>field</td>
+        <td>th:field</td>
+        <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding. O mesmo é opcional.</td>
+      </tr>
+
+      <tr>
+        <td>idField*</td>
+        <td>String</td>
+        <td>Id do input, o mesmo deve ser único.</td>
+      </tr>
+
+      <tr>
+        <td>nameField*</td>
+        <td>String</td>
+        <td>Name do elemento HTML.</td>
+      </tr>
+
+      <tr>
+        <td>nameHidden</td>
+        <td>String</td>
+        <td>Name do input Hidden.</td>
+      </tr>
+      
+      <tr>
+        <td>fieldHidden</td>
+        <td>th:field</td>
+        <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding para input Hidden. O mesmo é opcional.</td>
+      </tr>
+      
+      <tr>
+        <td>idHidden</td>
+        <td>String</td>
+        <td>Id do input Hidden, o mesmo deve ser único.</td>
+      </tr>
+      
+      <tr>
+        <td>disabled</td>
+        <td>Boolean</td>
+        <td>Informa se o elemento está desativado ou não.</td>
+      </tr>
+
+      <tr>
+        <td>required</td>
+        <td>Boolean</td>
+        <td>Informa se o elemento é obrigatório ou não.</td>
+      </tr>
+      
+      <tr>
+        <td>list</td>
+        <td>String</td>
+        <td>Nome da lista dos objetos listas no autocomplete.</td>
+      </tr>
+
+      <tr>
+        <td>fncName</td>
+        <td>Function</td>
+        <td>Nome da função que será chamada para preencher os inputs com base em um json object. Veja um exemplo no quadro de js auxiliar abaixo do chamada do thymeleaf do autocomplete.</td>
+      </tr>
+
+       <tr>
+        <td>onSelected</td>
+        <td>String</td>
+        <td>Identificador que será usado para acessar o elemento que irá preencher o input hidden com base no json object. EX: datum.id irá acessar o jsonObject.id. <p>Esse atributo também pode ser usado como o antigo filter.</p></td>
+      </tr>
+      
+      <tr>
+        <td>urlServer</td>
+        <td>String</td>
+        <td>Recurso que o componente irá requisitar no servidor, composto por:'/context/controller/action?meuParametro=%QUERY' , EX: '/modulo/tipoFrequencia/fillTipoFrequencia?descricao=%QUERY'.</td>
+      </tr>
+
+      <tr>
+        <td>parameters</td>
+        <td>String</td>
+        <td>Lista de parametros adicionais que vão ser enviados ao servidor. Os parametros devem ser passados seguindo o padrão de requisições <a href="http://www.w3schools.com/tags/ref_httpmethods.asp" target="_blank">GET</a>.</td>
+      </tr>
+    
+      <tr>
+        <td>maxLength</td>
+        <td>Numérico</td>
+        <td>Especifica quantidade máxima de caracteres do input.<a href="http://www.w3schools.com/tags/att_input_maxlength.asp" target="_blank"> aqui</a>.</td>
+      </tr>
+
+      <tr>
+        <td>dataBind</td>
+        <td>String</td>
+        <td>Atributo que referencia o bind knockoutjs para o lemento. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+      </tr>
+
+        <tr>
+        <td>dataBindHidden</td>
+        <td>String</td>
+        <td>Atributo que referencia o bind knockoutjs para o lemento Hidden do autocomplete. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+</section>
+
+<section class="bs-docs-section">
+  <h1 id="Selectable" class="page-header">Selectable</h1>
+  <blockquote>
+    Fornecer componentes para entradas como list( select ), checkbox e radio. 
+  </blockquote>
+
+
+  <h2 id="select-field-doc">Select Field</h2>
+    <p>Select Field fornece um componente select do html com auxílio do data bind do thymeleaf para gerar os options dinâmicamente.</p>
+
+    <div class="bs-example" >
+    <div class="row">
+      <div class="col-xs-4 col-md-4">
+        <div class="form-group">
+          <div>
+            <label class="control-label" for="id">
+              <span>Select</span>
+            </label>
+          </div>
+          <select class="form-control select-field" name="id" id="id" data-bv-notempty="false" >
+               <option value="">TODOS</option>
+               <option value="14">3 X AO DIA</option>
+               <option value="16">8 / 8 HORAS - 10 HORAS</option>
+               <option value="13">4 / 4 HORA INICIANDO 10:00</option>
+               <option value="28">2 X AO DIA</option>
+               <option value="23">1 X AO DIA </option>
+          </select>
+        </div>        
+      </div>
+    </div>
+    </div>
+  {% highlight html %}
+  <div class="col-xs-4">
+      <div th:replace="fragments/layout-selectable :: select-field(
+                                                                      label=labelDoSelect, 
+                                                                      field='${itemDoSelect.id}',
+                                                                      list=${listOuEnums}, 
+                                                                      text='atributoParaTextoDoOption', 
+                                                                      value='atributoParaValueDoOption', 
+                                                                      prompt=true, 
+                                                                      textPrompt='TODOS',
+                                                                      required=false)">
+      </div>
+  </div>
+  {% endhighlight %}
+
+  <h2>Atributos / Opções</h2>
+  <p>Atributos com <b>*</b> são obrigatórios.</p>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>label</td>
+          <td>messages.properties</td>
+          <td>String que faz referência ao messages/internacionalização do módulo.</td>
+        </tr>
+
+        <tr>
+          <td>field</td>
+          <td>th:field</td>
+          <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding. <b>Nesse caso será o elemento selecionado da lista.</b></td>
+        </tr>
+
+        <tr>
+          <td>list</td>
+          <td>th:each</td>
+          <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding. <b>Nesse caso será a lista de elementos dos options do select.</b></td>
+        </tr>
+
+         <tr>
+          <td>listEnum</td>
+          <td>th:each</td>
+          <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding. <b>Nesse caso será a lista de elementos dos options do select. Essa opção só deve ser usada no caso da lista for do tipo Enum.</b></td>
+        </tr>
+
+        <tr>
+          <td>idField*</td>
+          <td>String</td>
+          <td>Id do select, o mesmo deve ser único.</td>
+        </tr>
+
+        <tr>
+          <td>disabled</td>
+          <td>Boolean</td>
+          <td>Informa se o elemento está desativado ou não.</td>
+        </tr>
+
+        <tr>
+          <td>nameField*</td>
+          <td>String</td>
+          <td>Name do elemento HTML.</td>
+        </tr>
+
+        <tr>
+          <td>placeholder</td>
+          <td>String</td>
+          <td>Placeholder do input.</td>
+        </tr>
+
+        <tr>
+          <td>required</td>
+          <td>Boolean</td>
+          <td>Informa se o elemento é obrigatório ou não.</td>
+        </tr>
+        
+        <tr>
+          <td>autofocus</td>
+          <td>Boolean</td>
+          <td>Define foco automático no input.</td>
+        </tr>
+
+        <tr>
+          <td>prompt</td>
+          <td>Boolean</td>
+          <td>Informa se o select terá texto padrão ou não. No caso do exemplo é o TODOS.</td>
+        </tr>
+
+        <tr>
+          <td>textPrompt</td>
+          <td>String</td>
+          <td>Texto padrão que será usado no select. No caso é texto do option padrão.</td>
+        </tr>
+
+        <tr>
+          <td>valuePrompt</td>
+          <td>String</td>
+          <td>Value padrão que será usado no select. No caso é value do option padrão.</td>
+        </tr>
+
+        <tr>
+          <td>dataBind</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para o lemento. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="checkbox-field-doc">Checkbox Field</h2>
+    <p>Fornece um componente Checkbox.</p>
+    <p>O componente foi criado usando a libs: <a href="http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/" target="_blank">Awesome Bootstrap Checkbox</a>
+
+    <div class="bs-example" >
+      <div class="row">
+          <div class="col-xs-4">
+            <div class="form-group">
+              <div>
+                <label class="control-label"> 
+                  <span>Dispensar no retorno ?</span>
+                </label>
+              </div>
+                      
+              <div class="checkbox">
+                <input type="hidden" name="_checkSim" value="on">
+                <input type="checkbox" id="checkSim" name="checkSim" value="true">
+                <label>
+                  <span>Sim</span>
+                </label>
+              </div>        
+            </div>
+          </div>
+      </div>
+    </div>
+  {% highlight html %}
+  <div class="col-xs-4">
+    <div class="form-group">
+      <div>
+        <label class="control-label"> <span
+          th:text="#{dispensarRetorno}"></span>
+        </label>
+      </div>
+      <div th:replace="fragments/layout-selectable :: checkbox-field(
+                                                                      idField*=checkSim, 
+                                                                      label=geral.sim, 
+                                                                      field='${object.atribute}',
+                                                                      value='${object.atribute}')">
+      </div>
+    </div>
+  </div>
+  {% endhighlight %}
+  <h2>Atributos / Opções</h2>
+  <p>Atributos com <b>*</b> são obrigatórios.</p>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>label</td>
+          <td>messages.properties</td>
+          <td>String que faz referência ao messages/internacionalização do módulo.</td>
+        </tr>
+
+        <tr>
+          <td>idField*</td>
+          <td>String</td>
+          <td>Id do input, o mesmo deve ser único.</td>
+        </tr>
+
+        <tr>
+          <td>field</td>
+          <td>th:field</td>
+          <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding.</td>
+        </tr>
+
+        <tr>
+          <td>nameField*</td>
+          <td>String</td>
+          <td>Name do elemento HTML.</td>
+        </tr>
+
+        <tr>
+          <td>disabled</td>
+          <td>Boolean</td>
+          <td>Informa se o elemento está desativado ou não.</td>
+        </tr>
+
+        <tr>
+          <td>required</td>
+          <td>Boolean</td>
+          <td>Informa se o elemento é obrigatório ou não.</td>
+        </tr>
+        
+        <tr>
+          <td>autofocus</td>
+          <td>Boolean</td>
+          <td>Define foco automático no input.</td>
+        </tr>
+
+        <tr>
+          <td>value</td>
+          <td>String</td>
+          <td>Value do checkbox.</td>
+        </tr>
+
+        <tr>
+          <td>addClass</td>
+          <td>String</td>
+          <td>String que será adicionada ao class do elmento. Helper class <a href="http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/" target="_blank">aqui</a>.</td>
+        </tr>
+
+        <tr>
+          <td>dataBind</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para o lemento. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+<!-- ================================================= -->
+  <h2 id="radio-field-doc">Radio Field</h2>
+    <p>Fornece um componente Radio button.</p>
+    <p>O componente foi criado usando a libs: <a href="http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/" target="_blank">Awesome Bootstrap Checkbox</a>
+    
+    <div class="bs-example" >
+      <div class="row">
+        <div class="col-xs-4 col-md-4">
+            <div class="form-group">
+              <div>
+                <label class="control-label required"> <span>Situação</span>
+                </label>
+              </div>
+                      
+              <div class="radio radio-inline">
+                <input type="radio" id="rdoSimAtivo" name="ativo" value="true" data-bv-notempty="true" data-bv-field="ativo"> 
+                  
+                <label> 
+                  <span>Sim</span>
+                </label>
+              </div>
+                      
+              <div class="radio radio-inline">
+                <input type="radio" id="rdoNaoAtivo" name="ativo" value="false" data-bv-notempty="true" checked="checked" data-bv-field="ativo"> 
+                  
+                <label> 
+                  <span>Não</span>
+                </label>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  {% highlight html %}
+  <div class="col-xs-4">
+    <div class="form-group">
+        <div>
+          <label class="control-label"> 
+            <span th:text="#{situacao}"></span>
+          </label>
+        </div>
+
+        <div th:replace="fragments/layout-selectable :: radio-field(
+                                                                    idField*=rdoSimAtivo, 
+                                                                    label=geral.sim, 
+                                                                    field='${ativo}',
+                                                                    value=true)">
+        </div>
+
+        <div th:replace="fragments/layout-selectable :: radio-field(
+                                                                    idField*=rdoNaoAtivo, 
+                                                                    label=geral.sim, 
+                                                                    field='${ativo}',
+                                                                    value=false)">
+        </div>
+    </div>
+  </div>
+  {% endhighlight %}
+
+  <h2>Atributos / Opções</h2>
+  <p>Atributos com <b>*</b> são obrigatórios.</p>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>label</td>
+          <td>messages.properties</td>
+          <td>String que faz referência ao messages/internacionalização do módulo.</td>
+        </tr>
+
+        <tr>
+          <td>idField*</td>
+          <td>String</td>
+          <td>Id do input, o mesmo deve ser único.</td>
+        </tr>
+
+        <tr>
+          <td>field</td>
+          <td>th:field</td>
+          <td>Atributo do bean que faz a integração do Spring MVC ou seja o binding.</td>
+        </tr>
+
+        <tr>
+          <td>nameField*</td>
+          <td>String</td>
+          <td>Name do elemento HTML.</td>
+        </tr>
+
+        <tr>
+          <td>disabled</td>
+          <td>Boolean</td>
+          <td>Informa se o elemento está desativado ou não.</td>
+        </tr>
+
+        <tr>
+          <td>required</td>
+          <td>Boolean</td>
+          <td>Informa se o elemento é obrigatório ou não.</td>
+        </tr>
+        
+        <tr>
+          <td>autofocus</td>
+          <td>Boolean</td>
+          <td>Define foco automático no input.</td>
+        </tr>
+
+        <tr>
+          <td>value</td>
+          <td>String</td>
+          <td>Value do checkbox.</td>
+        </tr>
+
+        <tr>
+          <td>addClass</td>
+          <td>String</td>
+          <td>String que será adicionada ao class do elmento. Helper class <a href="http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/" target="_blank">aqui</a>.</td>
+        </tr>
+
+        <tr>
+          <td>dataBind</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para o lemento. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<section class="bs-docs-section">
+  <h1 id="bar" class="page-header">Bar</h1>
+  <blockquote>
+    Fornece agrupamentos de botões para agilizar a criação de crud's.
+  </blockquote>
+
+  <h2 id="search-group-button-doc">Search Group Button</h2>
+    <p>Agrupamento de botões padrão para telas de listagem.</p>
+
+    <div class="bs-example" >
+      <div class="row">
+        <div class="col-xs-4 col-md-2">
+          <button type="submit" id="btnPesquisar" class="btn btn-default" data-original-title="Pesquisar" data-toggle="tooltip">
+            <i class="fa fa-search mv-color-green"></i>
+          </button>
+          
+          <button class="btn btn-default" type="reset" id="btnLimpar">
+            <i class="fa fa-eraser mv-color-green"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  {% highlight html %}
+  <div class="col-xs-4 col-md-2">
+    <div th:replace="fragments/layout-bar :: search-group-button(btnClear=true)"></div>
+  </div>
+  {% endhighlight %}
+
+  <h2>Atributos / Opções</h2>
+  <p>Atributos com <b>*</b> são obrigatórios.</p>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>dataBindSearch</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para o button de busca. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+        </tr>
+
+        <tr>
+          <td>btnClear</td>
+          <td>Boolean</td>
+          <td>Informa se se haverá botão para limpar o formulário ou não.</td>
+        </tr>
+        
+        <tr>
+          <td>dataBindClear</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para o button limpar. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <h2 id="default-crud-bar-doc">Crud Bar</h2>
+    <p>Fornece um conjunto de botões com as ações padrões para um crud simples. </p>
+
+  <div class="bs-example" >
+    <div class="row">
+      <div class="row well crud-bar">
+        <div class="col-md-*">
+          <button class="btn btn-default" type="submit" id="btnSalvar" name="btnSalvar" data-placement="top" data-original-title="Salvar" data-toggle="tooltip">
+            
+              <i class="fa fa-save mv-color-green"></i>
+              
+           </button>
+           
+           <button class="btn btn-default" type="reset" id="btnLimpar" data-placement="top" data-original-title="Limpar" data-toggle="tooltip">
+            
+              <i class="fa fa-eraser mv-color-green"></i>
+           </button>
+          
+          <a type="button" class="btn btn-default" href="/demo/tipoFrequencia/list" data-placement="top" data-original-title="Voltar" data-toggle="tooltip">
+            
+              <i class="fa fa-reply mv-color-green"></i>
+          </a>
+          
+          <a class="btn btn-default" href="/demo/tipoFrequencia/new" data-placement="top" data-original-title="Novo" data-toggle="tooltip">
+            
+              <i class="fa fa-file mv-color-green"></i>
+              
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% highlight html %}
+  <div class="ol-md-*">
+    <div th:replace="fragments/layout-bar :: default-crud-bar(
+                                                                newButton=true, 
+                                                                urlNew='/tipoFrequencia/new', 
+                                                                cancelButton=true,
+                                                                urlCancel='/tipoFrequencia/list',
+                                                                saveButton=true, 
+                                                                clearButton=true)">
+    </div>
+
+  </div>
+  {% endhighlight %}
+
+  <h2>Atributos / Opções</h2>
+  <p>Atributos com <b>*</b> são obrigatórios.</p>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>relativeBar</td>
+          <td>Boolean</td>
+          <td>Define se o elemento será fixado próximo ao footer ou se ele irá se posicionar de forma relativa ao final do container.</td>
+        </tr>
+
+         <tr>
+          <td>saveButton</td>
+          <td>Boolean</td>
+          <td>Define se a barra conterá o botão de salvar.</td>
+        </tr>
+        
+        <tr>
+          <td>saveButtonTypeSubmit</td>
+          <td>Boolean</td>
+          <td>Informa se o tipo do button save é submit, em caso de false o tipo ficará como button.</td>
+        </tr>
+
+        <tr>
+          <td>saveActionForm</td>
+          <td>String</td>
+          <td>Action do form que o saveButton irá disparar. Mais informações <a href="http://www.w3schools.com/tags/att_button_formaction.asp" target="_blanck"> aqui</a>.</td>
+        </tr>
+
+        <tr>
+          <td>disabledSaveButton</td>
+          <td>Boolean</td>
+          <td>Informa se o saveButton está desativado ou não.</td>
+        </tr>
+
+        <tr>
+          <td>dataBindSave</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para o saveButton. Mais informações <a href="http://knockoutjs.com/documentation/binding-syntax.html" target="_blanck"> aqui</a>. </td>
+        </tr>
+
+        <tr>
+          <td>clearButton</td>
+          <td>Boolean</td>
+          <td>Define se a barra conterá o botão limpar.</td>
+        </tr>
+
+        <tr>
+          <td>disabledClearButton</td>
+          <td>Boolean</td>
+          <td>Informa se o ClearButton está desativado ou não.</td>
+        </tr>
+
+        <tr>
+          <td>dataBindClear</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para o clearButton. Mais informações <a href="http://www.w3schools.com/tags/att_button_formaction.asp" target="_blanck"> aqui</a>.</td>
+        </tr>
+
+        <tr>
+          <td>cancelButton</td>
+          <td>Boolean</td>
+          <td>Define se a barra conterá o botão cancelar.</td>
+        </tr>
+
+        <tr>
+          <td>disabledCancelButton</td>
+          <td>Boolean</td>
+          <td>Informa se o cancelButton está desativado ou não.</td>
+        </tr>
+
+        <tr>
+          <td>urlCancel</td>
+          <td>String/url</td>
+          <td>Url para o atributo href do botão cancelar.</td>
+        </tr>
+
+        <tr>
+          <td>dataBindCancel</td>
+          <td>String</td>
+          <td>Atributo que referencia o bind knockoutjs para o cancelButton. Mais informações <a href="http://www.w3schools.com/tags/att_button_formaction.asp" target="_blanck"> aqui</a>.</td>
+        </tr>
+
+         <tr>
+            <td>cancelButton</td>
+            <td>Boolean</td>
+            <td>Define se a barra conterá o botão cancelar.</td>
+          </tr>
+
+          <tr>
+            <td>disabledCancelButton</td>
+            <td>Boolean</td>
+            <td>Informa se o cancelButton está desativado ou não.</td>
+          </tr>
+
+          <tr>
+            <td>urlNew</td>
+            <td>String/url</td>
+            <td>Url para o atributo href do botão cancelar.</td>
+          </tr>
+
+          <tr>
+            <td>dataBindNew</td>
+            <td>String</td>
+            <td>Atributo que referencia o bind knockoutjs para o newButton. Mais informações <a href="http://www.w3schools.com/tags/att_button_formaction.asp" target="_blanck"> aqui</a>.</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <h2 id="modal-group-button-footer-doc">Modal Group Button</h2>
+    <p>Fornece um conjunto de botões padrão para os footers dos modais.</p>
+
+    <div class="bs-example" >
+      <div class="row">
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-default" name="btnSucess" id="idBtnSucess">
+              <span class="glyphicon glyphicon-ok mv-color-green"></span>
+            <span>OK</span> 
+            </button>
+            
+            <button type="button" class="btn btn-default" data-dismiss="modal" name="btnCancel" id="idBtnCancel">
+            <span class="glyphicon glyphicon-ban-circle mv-color-green"></span>
+            <span>Cancelar</span> 
+          </button>
+        </div>
+      </div>
+    </div>
+  {% highlight html %}
+  <div class="col-xs-4">
+  <div th:replace="fragments/layout-bar :: modal-group-button-footer(
+                                                                      nameSucess='btnSucess', 
+                                                                      idSucess='idBtnSucess', 
+                                                                      sucessLabel=ok, 
+                                                                      nameCancel='btnCancel', 
+                                                                      idCancel='idBtnCancel', 
+                                                                      cancelLabel=cancel)">
+  </div>
+  </div>
+  {% endhighlight %}
+
+  <h2>Atributos / Opções</h2>
+  <p>Atributos com <b>*</b> são obrigatórios.</p>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>nameSucess</td>
+          <td>String</td>
+          <td>Name do elemento HTML.</td>
+        </tr>
+
+        <tr>
+          <td>idSucess</td>
+          <td>String</td>
+          <td>Id do sucessButton, o mesmo deve ser único.</td>
+        </tr>
+
+        <tr>
+          <td>sucessLabel</td>
+          <td>messages.properties</td>
+          <td>String que faz referência ao messages/internacionalização do módulo para o buttonSucess.</td>
+        </tr>
+
+        <tr>
+          <td>nameCancel</td>
+          <td>String</td>
+          <td>Name do elemento HTML.</td>
+        </tr>
+
+        <tr>
+          <td>idCancel</td>
+          <td>String</td>
+          <td>Id do cancelButton, o mesmo deve ser único.</td>
+        </tr>
+
+        <tr>
+          <td>cancelLabel</td>
+          <td>messages.properties</td>
+          <td>String que faz referência ao messages/internacionalização do módulo para o cancelButton.</td>
+        </tr>
+
+        <tr>
+          <td>addClass</td>
+          <td>String</td>
+          <td>String que será adicionada ao class do container dos buttons.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <h2 id="paginationBar-doc">Pagination</h2>
+    <p>Fornece um componente para realizar a paginação de grids, esse elemento pode realizar o envio por ajax ou submit.</p>
+    <p>Segue os atributos enviados ao servidor.</p>
+    <ul>
+      <li>
+        <code>page</code> - Informa a página que será listada na tabela;
+      </li>
+      <li>
+        <code>size</code> - Quantidade de elemento do page ou seja quantos elementos vão ser exibidos na tabela;
+      </li>
+      <li>
+        <code>idToRender</code> - Id do template do thymeleaf que será renderizado pelo servidor;
+      </li>
+    </ul>
+    <div class="bs-example" >
+    <div class="row">
+        <div class="paginationbar">
+          <nav class="text-center" data-totalpages="2" data-size="7" data-idtorender="results" data-method="/modulo/tipoFrequencia/listPaginated" data-ajax="true">
+          
+            <ul class="pagination">
+              <li class="disabled">
+                <span>
+                  <i class="glyphicon glyphicon-backward mv-color-blue"></i>
+                </span>
+                
+              </li>
+
+              <li class="disabled">
+                <span>
+                  <i class="glyphicon glyphicon glyphicon-play inverted-icon mv-color-blue"></i>
+                </span>
+                
+              </li>
+
+              <li class="active" data-activenumber="1">
+                <a href="javascript:void(0);">
+                    <span>1</span>
+                </a>
+                
+              </li>
+
+              <li data-activenumber="2">
+                
+                <a href="#" data-number="2">
+                  <span>2</span>
+                </a>
+              </li>
+
+              <li>
+                
+                <a href="#" title="Próxima página">
+                 <i class="glyphicon glyphicon glyphicon-play mv-color-blue"></i>
+                </a>
+              </li>
+
+              <li>
+                
+                <a href="#" title="Última página" data-number="false">
+                  <i class="glyphicon glyphicon glyphicon-forward mv-color-blue"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  {% highlight html %}
+  <div class="col-xs-4">
+    <div th:replace="fragments/layout-bar :: paginationbar(
+                                                            method='/modulo/tipoFrequencia/listPaginated', 
+                                                            idToRender='results')">
+    </div>
+  </div>
+  {% endhighlight %}
+
+  <p>Segue um exemplo de como responder o componente de paginação do lado do servidor.</p>
+  {% highlight java %}
+    @RequestMapping(value="/listPaginated", method = RequestMethod.GET)
+    public String findTipoFrequenciaPaginated(@ModelAttribute TipoFrequencia tipoFrequencia, 
+                          @RequestParam(value = "page", defaultValue = "") Integer page,
+                          @RequestParam(value = "size", defaultValue = "") Integer size, 
+                          @RequestParam(value = "idToRender", defaultValue = "") String idToRender,
+                          Model model,
+                          HttpServletRequest request) {
+      Pageable pageable = new PageRequest(page, size, Sort.DEFAULT_DIRECTION, "descricaoFrequencia");
+      this.page = tipoFrequenciaBusiness.listTipoFrequencia(tipoFrequencia, pageable);
+      model.addAttribute("page", this.page);
+      model.addAttribute("tipoFrequencia", tipoFrequencia);
+      if(isAjax(request))
+        return "tipoFrequencia/tipoFrequenciaList :: #" + idToRender;
+      else
+        return "tipoFrequencia/tipoFrequenciaList";
+    }
+
+    private boolean isAjax(HttpServletRequest request){
+      String header = request.getHeader("x-requested-with");
+      if(header != null && header.equals("XMLHttpRequest"))
+        return true;
+      else
+        return false;
+    }
+  {% endhighlight %}
+
+  <h2>Atributos / Opções</h2>
+  <p>Atributos com <b>*</b> são obrigatórios.</p>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+      <col class="col-xs-1">
+      <col class="col-xs-1">
+      <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>idToRender</td>
+          <td>String</td>
+          <td>Id do elemento que vai receber o HTML de resposta do servidor. Esse id tb deve ser o mesmo do template do thymeleaf do lado do servidor.</td>
+        </tr>
+
+        <tr>
+          <td>method</td>
+          <td>String</td>
+          <td>Recurso que o componente irá requisitar no servidor, composto por:'/context/controller/action' , EX: '/modulo/tipoFrequencia/listPaginated'.</td>
+        </tr>
+
+        <tr>
+          <td>ajax</td>
+          <td>Boolean</td>
+          <td>Informa se a paginação irá realizar o envio dos dados por AJAX ou submit tradicional. O padrão é por AJAX.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="bs-docs-section">
+  <h1 id="message" class="page-header">Message</h1>
+  <blockquote>
+    Fornece mensagens de alerta e confirmação de ações.
+  </blockquote>
+
+  <h2 id="alerts-doc">Alerts</h2>
+    <p>Proporciona serviço alerta aos usuários.</p>
+    <p>O componente foi criado usando a lib: <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">Notify</a>.
+
+    <div class="bs-example" >
+    <div class="row">
+      <img src="{{site.github.url}}/assets/images/alertSucess.png" />
+    </div>
+    </div>
+  {% highlight html %}
+  <div th:replace="fragments/layout-message :: alerts(success='Registro salvo com sucesso.')">
+  </div>
+  {% endhighlight %}
+
+  <p>
+    Os alerts são usados como padrão no decorator que é herdado de todas as telas do tipo manter.
+    Para usar basta informar o message no controller como no exemplo a seguir.
+  </p>
+  <p>O EnumTipoMensagem possui as messagens padrões de uma tela do tipo manter.</p>
+
+  {% highlight java %}
+  class MyController {
+    private final GenericMessages genericMessages;
+
+    public String myMethod(){
+      //Determina uma menssagem de sucesso.
+      model.addAttribute(EnumTipoMensagem.SUCESSO.getDescricao(), genericMessages.getMessage("messages.properties"));
+    }
+  }
+  {% endhighlight %}
+
+  <p>O Alert também pode ser usado diretamente do javaScript. Veja o exemplo a seguir.</p>
+  {% highlight javaScript %}
+    $.alertSuccess('msg de sucesso');
+  $.alertInfo('msg de informação');
+  $.alertError('msg de erro');
+  $.alertWarning('msg de perigo');
+  {% endhighlight %}
+
+ <p>Também é possível usar combinado com requisições ajax. </p>
+ <p>Do lado do servidor basta lançar um GenericException. Veja o exemplo: </p>
+ {% highlight java %}
+  class MyController {
+
+    public String myMethod() throws GenericException{
+       throw new GenericException("Este medicamento item já foi adicionado.", EnumTipoMensagem.ERRO);
+    }
+
+  }
+  {% endhighlight %}
+  <p>E no jquery basta usar como no exemplo abaixo.</p>
+  {% highlight javaScript %}
+    $.get( url, params )
+      .fail(
+        function(response) {
+          $.alertSuccess($.getGenericMessage(response));
+        }
+      ); 
+  {% endhighlight %}
+  </br>
+   
+  <h2 id="confirmation-doc">Delete Confirmation</h2>
+    <p>Fornece um componente de interface completo para deleção de objetos. Ideal para linhas em tabelas.</p>
+    <p>O componente foi criado usando a lib: <a href="http://mistic100.github.io/Bootstrap-Confirmation/" target="_blank">Bootstrap Confirmation</a>.
+
+    <div class="bs-example" >
+    <div class="row">
+      <span data-original-title="Excluir" data-toggle="tooltip" style="margin-left:30%;">
+        <a class="btn btn-default confirmation-callback" type="button" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-success" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger" id="btnExclusao34" data-id="34" data-title="Confirma a exclusão do registro?" data-btn-ok-label="Sim" data-btn-cancel-label="Não" data-placement="left" data-singleton="true" data-popout="true" data-method="/" data-defaultfunction="true" data-msgsave="Operação realizada com sucesso." data-original-title="" title="">
+            <p><i class="fa fa-trash mv-color-green"></i></p>
+        </a>
+      </span>
+    </div>
+    </div>
+  {% highlight html %}
+
+  <th:block th:replace="fragments/layout-message :: confirmation(
+                                                                  idToExclude=${objeto.id}, 
+                                                                  idField*=${'btnExclusao' + objeto.id},
+                                                                  title=confirmExclusion, 
+                                                                  tooltip=excluir,
+                                                                  singleton=true, 
+                                                                  function=true, 
+                                                                  placement=left, 
+                                                                  popout=true, 
+                                                                  method='/dispensacao/tipoFrequencia/delete')"/>
+
+  {% endhighlight %}
+
+  <h2>Atributos / Opções</h2>
+  <p>Atributos com <b>*</b> são obrigatórios.</p>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Atributo</th>
+          <th>Tipo</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>idField*</td>
+          <td>String</td>
+          <td>Id do button, o mesmo deve ser único.</td>
+        </tr>
+
+        <tr>
+          <td>disabled</td>
+          <td>Boolean</td>
+          <td>Informa se o elemento está desativado ou não.</td>
+        </tr>
+    
+        <tr>
+          <td>idToExclude</td>
+          <td>String</td>
+          <td>Id do objeto que será deletado.</td>
+        </tr>
+    
+        <tr>
+          <td>title</td>
+          <td>String</td>
+          <td>String do titulo do popup que faz referência ao messages/internacionalização do módulo..</td>
+        </tr>
+    
+        <tr>
+          <td>tooltip</td>
+          <td>String</td>
+          <td>String do tooltip do button que faz referência ao messages/internacionalização do módulo..</td>
+        </tr>
+
+        <tr>
+          <td>popout</td>
+          <td>Boolean</td>
+          <td>Define se ao clicar em qualquer lugar na página irá fechar os popup's.</td>
+        </tr>
+
+        <tr>
+          <td>placement</td>
+          <td>String</td>
+          <td>Direção que o popup será exibido, pode variar em: left, top, bottom e right.</td>
+        </tr>
+          
+        <tr>
+          <td>singleton</td>
+          <td>Boolean</td>
+          <td>Define se só será exibido um popup por vez na página.</td>
+        </tr>
+    
+        <tr>
+          <td>function</td>
+          <td>String</td>
+          <td>Função que será chamada após as requisição ajax ser executadas.</td>
+        </tr>
+        
+        <tr>
+          <td>ajax</td>
+          <td>Boolean</td>
+          <td>Informa se a forma de envio dos dados é por AJAX ou submit tradicional.</td>
+        </tr>
+    
+        <tr>
+          <td>method</td>
+          <td>String</td>
+          <td>Recurso que o componente irá requisitar no servidor, composto por:'/context/controller/action' , EX: '/modulo/tipoFrequencia/delete'.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
