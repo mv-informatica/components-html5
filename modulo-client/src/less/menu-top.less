@@ -1,0 +1,120 @@
+@import "utils/variables.less";
+@import "utils/mixins.less";
+
+@desktop: ~"screen and (max-width: 940px)";
+@desktop-768: ~"(min-width : 768px)";
+
+.navbar {
+	.width-height(auto, 36px);
+	min-height: 40px;
+	background-repeat: repeat-x;
+	margin-bottom: 0px;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 2px 2px #BEBDBC;
+	    
+	.topnav {
+		margin: 2px 0;
+		text-align: right;
+	}	
+	
+	.logo-bar {
+		width: 125px;
+		height: 27px;
+		float: left;
+		padding-right: 3px;
+		padding-top: 2px;
+		padding-left: 2px;
+	}
+} 
+
+.navbar-brand{
+	.width-height(auto, 36px);
+	min-height: 40px;
+	background: none;
+	padding: 0;
+	margin-bottom: 0px;
+}
+
+.navbar-default {
+	.box-shadow(none, none, none, none);
+}
+
+.navbar-title {
+	vertical-align: middle;
+	.width-height(100%, 36px);
+}
+
+@media @desktop-768 {
+	.navbar .topnav {
+		float: right
+	}
+}
+
+.menu-top-text-style( @font-size ){
+	color:@black !important;
+	font-size: @font-size;
+}
+
+.app-title{
+	.menu-top-text-style(16px);
+	line-height: 2; 
+	margin: 0px;
+	margin-left: 0.6%; 
+}
+
+.app-system-info p.text-nowrap{
+	.menu-top-text-style(11px);
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+@media @desktop {
+	.app-system-info{
+		display: none;
+	}
+}
+
+.grouped-menu {
+	.btn-menu-top{
+		.width-height(35px, 35px);
+		a{
+			padding-top: 9px;
+			padding-left: 12px;
+			margin-left: -4px !important;
+			&:hover {
+				.box-shadow(inset 0, 0, 10px, rgba(145, 144, 144, 0.43));
+			}	
+		}
+	}	
+}
+
+.navbar .divider-vertical{
+	height: 40px;
+    margin: 0 4px;
+    border-right: 0.08em solid rgba(195, 195, 195, 0.46);
+}
+
+button.navbar-toggle {
+	.collapsed{
+		background-color: #D8D8D8;	
+		margin: 1px 11px 0px 0px;
+		&:hover {
+			background-color: #EDEDED;		
+		}
+	}	
+}
+
+div.collapse.navbar-collapse.grouped-menu.in, .collapsing{
+	background-color: #f8f8f8;
+	border-bottom-color: #101010;
+	.box-shadow(0px, 6px, 6px, #888888);
+}
+
+.navbar-default {
+	background-color: #f8f8f8;
+	border-color: #e7e7e7;
+}
+
+.menu-top-icons{
+	.min-width-height(18px, 18px);
+	font-size: 18px;
+}

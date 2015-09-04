@@ -1,0 +1,63 @@
+springBoot {
+    mainClass = 'br.com.mv.modulo.Application'
+}
+
+buildscript {
+    ext {
+        springBootVersion = '1.2.3.RELEASE'
+    }
+    repositories {
+    	mavenLocal()
+        mavenCentral()
+		maven{
+			url 'http://repo.spring.io/libs-snapshot'
+		}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+repositories {
+    maven {
+    	url "http://repo.spring.io/libs-snapshot"
+    }
+	mavenLocal()
+    mavenCentral()
+}
+
+ext {
+    javaVersion = '1.8';
+}
+
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+
+war {
+	baseName = 'modulo'
+	version =  '1.0.0-SNAPSHOT'
+}
+
+configurations {
+	providedRuntime
+}
+
+dependencies {
+    compile project(':modulo-server-back')
+    compile project(':modulo-client')
+    
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-remote-shell")
+    //compile "org.springframework.boot:spring-boot-starter-security"
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile("org.eclipse.jetty:jetty-servlets")
+	compile("org.thymeleaf.extras:thymeleaf-extras-conditionalcomments")
+	compile("com.github.mxab.thymeleaf.extras:thymeleaf-extras-data-attribute")
+	compile("org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE")
+	//compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+ xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute"
+ class="no-js">
+<meta charset="UTF-8"/>
+<body>
+
+<div id="left" th:fragment="menu-left">
+    <ul id="menu">
+		<li>
+		  	<a href="javascript:;">
+		  		<i class="glyphicon glyphicon-plus"></i>
+				<span class="link-title" th:text="#{cadastros}"></span>
+				<span class="fa arrow"></span> 
+			</a> 
+			
+			<ul>
+				<li data-controller="farmacia">
+				  <a href="#farmacia" th:href="@{/farmacia/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{farmacia}"></span>
+				  </a> 
+				</li>
+				
+				<li data-controller="medicamentoGeral">
+				  <a href="#listMedicamento" th:href="@{/medicamentoGeral/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{medicamento}"></span>
+				  </a> 
+				</li>
+				
+				<li data-controller="tipoFrequencia">
+				  <a href="#listTipoFrequencia" th:href="@{/tipoFrequencia/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{tipoFrequencia}"></span>
+				  </a> 
+				</li>
+				
+				<li data-controller="tipoReceituario">
+				  <a href="#listTipoReceituario" th:href="@{/tipoReceituario/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{tipoReceituario}"></span>
+				  </a> 
+				</li>
+				
+				<li data-controller="marcaMedicamento">
+				  <a href="#listMarcaMedicamento" th:href="@{/marcaMedicamento/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{marcaMedicamento}"></span>
+				  </a> 
+				</li>
+				
+				<li data-controller="motivoSaidaPermanencia">
+				  <a href="#listMotivoSaidaPermanencia" th:href="@{/motivoSaidaPermanencia/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{motivoSaidaPermanencia}"></span>
+				  </a> 
+				</li>
+				
+				<li data-controller="avaliacaoApac">
+				  <a href="#listAvaliacaoApac" th:href="@{/avaliacaoApac/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{avaliacaoApac}"></span>
+				  </a> 
+				</li>
+				
+				<li data-controller="devolucaoMedicamento">
+				  <a href="#listDevolucaoMedicamento" th:href="@{/devolucaoMedicamento/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{devolucaoMedicamento}"></span>
+				  </a>
+				</li>
+				
+				<li data-controller="sequencialApac">
+				  <a href="#listSequencialApac" th:href="@{/sequencialApac/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{sequencialApac}"></span>
+				  </a> 
+				</li>
+				
+				<li data-controller="restricaoMedicamento">
+				  <a href="#listRestricaoMedicamento" th:href="@{/restricaoMedicamento/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{restricaoPrescricao}"></span>
+				  </a> 
+				</li>
+			</ul>
+		</li>
+		
+		<li>
+			<a href="javascript:;">
+				<i class="glyphicon glyphicon-paste"></i>
+				<span class="link-title" th:text="#{movimentacao}"></span>
+				<span class="fa arrow"></span> 
+			</a> 
+			
+			<ul>
+				<li data-controller="solicitacaoMedicamento">
+				  <a href="#solicitacaoMedicamento" th:href="@{/solicitacaoMedicamento/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{solicitacaoMedicamento}"></span>
+				  </a> 
+				</li>
+				
+				<li data-controller="dispensacaoMedicamento">
+				  <a href="#dispensacaoMedicamento" th:href="@{/dispensacaoMedicamento/list}">
+				    <i class="fa fa-desktop"></i> <span th:text="#{dispensacaoMedicamento}"></span>
+				  </a> 
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+</body>
+</html>

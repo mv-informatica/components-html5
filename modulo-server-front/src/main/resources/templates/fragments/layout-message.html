@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute"
+ class="no-js">
+<meta charset="UTF-8"/>
+<body>
+	<!-- Alerts -->
+	<th:block th:fragment="alerts">
+		<th:block th:if="${info != null}">
+			<script th:inline="javascript">
+				$(function(){
+					$.notify({
+						message: [[${info}]]
+					},{
+						delay: 4000,
+						type: 'info'
+					});
+				});
+			</script>
+		</th:block>
+	
+		<th:block th:if="${success != null}">
+			<script th:inline="javascript">
+				$(function(){
+					$.notify({
+						message: [[${success}]]
+					},{
+						delay: 4000,
+						type: 'success'
+					});
+				});
+			</script>
+		</th:block>
+		
+		<th:block th:if="${danger != null}">
+			<script th:inline="javascript">
+				$(function(){
+					$.notify({
+						message: [[${danger}]]
+					},{
+						delay: 3000,
+						type: 'danger'
+					});
+				});
+			</script>
+		</th:block>
+		
+		<th:block th:if="${warning != null}">
+			<script th:inline="javascript">
+				$(function(){
+					$.notify({
+						message: [[${error}]]
+					},{
+						delay: 3000,
+						type: 'warning'
+					});
+				});
+			</script>
+		</th:block>
+	</th:block>
+       
+	<th:block th:fragment="confirmation">
+		<span data:original-title="${tooltip} != null ? #{${tooltip}} : ''" data:toggle="tooltip">
+			<a class="btn btn-default confirmation-callback" type="button" th:classappend="${disabled} !=null ? 'disabled':''" 
+				th:id="${idField}"
+				data-btn-ok-icon="glyphicon glyphicon-share-alt"
+				data-btn-ok-class="btn-success"
+				data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+				data-btn-cancel-class="btn-danger"
+				data:title="#{${title}}"
+				data:btn-ok-label="#{labelOk}"
+				data:btn-cancel-label="#{labelCancel}"
+				data:placement="${placement}"
+				data:singleton="${singleton}"
+				data:popout="${popout}"
+				data:method="@{__${method}__}"
+				data:ajax="${ajax}"
+				data:msgSave="#{ctrl.message.success.save}"
+				data:id="${idToExclude}"
+				data:function="${function}"
+				th:disabled="${disabled}">
+		
+				<th:block th:switch="${type}">
+				  <p th:case="null"><i class="fa fa-trash mv-color-green"></i></p>
+				  <p th:case="cancel"><i class="fa fa-ban mv-color-green"></i></p>
+				  <p th:case="end"><i class="fa fa-times-circle mv-color-green"></i></p>
+				</th:block>
+			</a>
+		</span>
+	</th:block>
+</body>
+</html>

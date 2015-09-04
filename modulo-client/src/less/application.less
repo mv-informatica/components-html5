@@ -1,0 +1,141 @@
+@import "utils/variables.less";
+@import "utils/mixins.less";
+
+@mobile-600: ~"(min-height : 600px)";
+@desktop-768: ~"(min-width : 768px)";
+
+.mv-color-blue {
+	color: @mv-color-blue;
+}
+
+.mv-color-green {
+	color: @mv-color-green;
+}
+
+input, textarea {
+	text-transform: uppercase;
+}
+
+.input-group-addon {
+	font-size: 12px;
+}
+
+html, body, .container-fluid.main, .row.main {
+	margin: 0;
+	overflow: hidden;
+	height:100%;
+}
+
+.container-fluid.main {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.fill {
+	height: 100%;
+}
+
+.left-side {}
+
+.right-side {
+	height: 91%;
+	overflow-y: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.border-left {
+	border-left: 2px solid #DCDCDC;
+}
+
+.jumbotron {
+	text-align: center;
+	background-color: transparent;
+}
+
+.top-buffer { 
+	margin-top:24px;
+}
+
+.form {
+	height: 100%;
+}
+
+.form-control {
+	height: 30px;
+	font-size: 12px;
+}
+
+@media @mobile-600 {
+	.control-label {
+		font-size: 12px;
+		white-space: nowrap;
+	}
+
+	legend {
+		font-size: 17px;
+	}
+
+	th {
+		font-size: 12px;
+		white-space: normal;
+	}
+
+	td {
+		font-size: 12px;
+		white-space: nowrap;
+	}
+}
+
+.required:after { 
+	color:red;
+	content:" *"; 
+}
+
+.inverted-icon {
+    .transform( scaleX(-1) );
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}	
+
+.default-margin {
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.table tbody tr {
+	&:hover td {
+	    background: #FDFDE8;    
+	}
+	&.selected td {
+		background: #FDFDE8;    
+	}
+}
+
+.fixed-table {
+	table-layout:fixed;
+	td {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+.td-no-data {
+	border-right: 1px solid #FFFFFF;
+	text-align: right;
+}
+
+.modal-backdrop, .modal-backdrop.fade.in {
+	.width-height(100%, 100%);	
+	background: #EDEDED !important;
+}
+
+.btn {
+    height: 30px;
+    font-size: 12px;
+}
+
+.tooltip-inner {
+	max-width: 325px;
+}

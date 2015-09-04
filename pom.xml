@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>io.spring.platform</groupId>
+		<artifactId>platform-bom</artifactId>
+		<version>LATEST</version>
+		<relativePath/>
+	</parent>
+	
+	<groupId>br.com.mv</groupId>
+	<artifactId>modulo</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Modulo</name>
+	<description>Novo Framework da MV Fortaleza</description>
+	<url>http://romeu.mvfor.local/framework-html5/modulo</url>
+
+	<scm>
+		<connection>scm:git:http://romeu.mvfor.local/framework-html5/modulo.git</connection>
+		<url>http://romeu.mvfor.local/framework-html5/modulo</url>
+	</scm>
+	
+	<organization>
+		<name>MV Informática</name>
+		<url>http://www.mv.com.br/</url>
+	</organization>
+	
+	<developers>
+		<developer>
+			<id>alexandre.goncalves</id>
+			<name>Alexandre Araújo</name>
+			<email>alexandre.goncalves@mv.com.br</email>
+			<timezone>America/Fortaleza</timezone>
+			<url>https://github.com/alexandrearaujo</url>
+			<properties>
+				<skype>alex21902</skype>
+			</properties>
+			<organization>MV Informática</organization>
+			<organizationUrl>http://www.mv.com.br/</organizationUrl>
+			<roles>
+				<role>Project lead</role>
+				<role>architect</role>
+        		<role>developer</role>
+			</roles>
+		</developer>
+		
+		<developer>
+			<id>fernando.nogueira</id>
+			<name>Fernando Nogueira</name>
+			<email>fernando.nogueira@mv.com.br</email>
+			<timezone>America/Fortaleza</timezone>
+			<url>https://github.com/fernandoGN</url>
+			<properties>
+				<skype>fernandogomes2011</skype>
+			</properties>
+			<organization>MV Informática</organization>
+			<organizationUrl>http://www.mv.com.br/</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+	
+	<licenses>
+		<license>
+			<name>Copyright 2015 MV</name>
+		</license>
+	</licenses>
+
+	<modules>
+		<module>modulo-client</module>
+		<module>modulo-server-front</module>
+		<module>modulo-server-back</module>
+		<!--<module>modulo-tests</module>-->
+	</modules>
+	
+	<prerequisites>
+		<maven>3.2.1</maven>
+	</prerequisites>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<tomcat.version>LATEST</tomcat.version>
+		<spring.version>LATEST</spring.version>
+	</properties>
+	
+	<profiles>
+		<profile>
+			<id>env-mv-dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			
+			<repositories>
+				<repository>
+					<id>MVNexus</id>
+					<name>MV Nexus Repository</name>
+					<url>http://echo.mvfor.local/nexus/content/groups/public</url>
+					<layout>default</layout>
+				</repository>
+			</repositories>
+			
+			<pluginRepositories>
+				<pluginRepository>
+					<id>MVNexus</id>
+					<name>MV Nexus Repository</name>
+					<url>http://echo.mvfor.local/nexus/content/groups/public</url>
+					<layout>default</layout>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+		
+		<profile>
+			<id>sonar</id>
+			<properties>
+				<sonar.jdbc.url>jdbc:postgresql://192.168.254.137/sonarqube</sonar.jdbc.url>
+				<sonar.jdbc.username>sonarqube</sonar.jdbc.username>
+				<sonar.jdbc.password>sonarqube</sonar.jdbc.password>
+				<sonar.host.url>http://192.168.254.137:9000</sonar.host.url>
+			</properties>
+		</profile>
+	</profiles>
+	
+	<distributionManagement>
+		<repository>
+			<id>MVNexus</id>
+			<name>Internal Releases</name>
+			<url>http://echo.mvfor.local/nexus/content/repositories/releases/</url>
+		</repository>
+		
+		<snapshotRepository>
+			<id>MVNexus</id>
+			<name>Internal Snapshots</name>
+			<url>http://echo.mvfor.local/nexus/content/repositories/new-projects-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.github.eirslett</groupId>
+					<artifactId>frontend-maven-plugin</artifactId>
+					<version>0.0.24</version>
+					<executions>
+						<execution>
+							<id>install node and npm</id>
+							<goals>
+								<goal>install-node-and-npm</goal>
+							</goals>
+							<configuration>
+								<nodeVersion>v0.12.7</nodeVersion>
+								<npmVersion>2.13.0</npmVersion>
+							</configuration>
+							<phase>initialize</phase>
+						</execution>
+						
+						<execution>
+							<id>npm install</id>
+							<goals>
+								<goal>npm</goal>
+							</goals>
+							<phase>initialize</phase>
+						</execution>
+					</executions>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
+		<plugins>
+	        <plugin>
+	            <artifactId>maven-scm-plugin</artifactId>
+	            <version>1.9.4</version>
+	            <configuration>
+	            	<basedir>${basedir}</basedir>
+	                <tag>v${project.version}</tag>
+	                <message>Tag da versão ${project.version}</message>
+	            </configuration>
+	        </plugin>
+	    </plugins>
+	</build>
+</project>

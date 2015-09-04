@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>modulo-tests</artifactId>
+	<packaging>jar</packaging>
+	<name>Modulo Tests</name>
+
+	<parent>
+		<groupId>br.com.mv</groupId>
+		<artifactId>modulo</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<httpclient.version>LATEST</httpclient.version>
+		<sonar.sources>.</sonar.sources>
+		<sonar.tests>.</sonar.tests>
+		<sonar.test.inclusions>**/*Test*/**</sonar.test.inclusions>
+		<sonar.exclusions>**/*Test*/**</sonar.exclusions>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>br.com.mv</groupId>
+			<artifactId>modulo-server-front</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.test.htmlunit</groupId>
+			<artifactId>spring-test-htmlunit</artifactId>
+			<version>LATEST</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-htmlunit-driver</artifactId>
+			<version>LATEST</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-support</artifactId>
+			<version>LATEST</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<version>LATEST</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<testSourceDirectory>src/main/java</testSourceDirectory>
+	</build>
+</project>

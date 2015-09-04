@@ -1,0 +1,30 @@
+@import "utils/variables.less";
+@import "utils/mixins.less";
+
+footer {
+	.width-height(100%, 26px);
+    .box-shadow(0px, -2px, 1px, #888888);
+	position: absolute;
+	bottom: 0;
+    clear: both;
+    .container-fluid, footer .container-fluid .row{
+	    height: 26px;
+		background-color: @mv-color-background;		
+    }
+}
+
+.logged-user-icon {
+	margin-top: 2px;
+	.width-height(23px, 22px);
+	i{
+		.min-width-height(13px, 13px);
+		font-size: 13px;
+	}
+}
+
+.logged-user-name{
+	color: @black !important;
+	font-size: 11px;
+	line-height: 2.6;
+	margin-left: 3%;
+}

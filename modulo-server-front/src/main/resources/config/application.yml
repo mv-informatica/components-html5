@@ -1,0 +1,58 @@
+#liquibase:
+#    enabled: false
+#    change-log: classpath:/db/changelog/db.changelog-master.xml
+server:
+    context-path: /modulo
+    #port: 8443
+    #ssl:
+    #    key-store: keystore.jks
+    #    key-alias: tomcat
+    #    key-store-password: tomcatmvfor
+    #tomcat:
+    #    compression: 4096
+    #    compressableMimeTypes: application/json,application/xml
+spring:
+    application:
+        name: modulo
+    datasource:
+        driver-class-name: oracle.jdbc.OracleDriver
+        url: jdbc:oracle:thin:@192.168.254.100:1521:dbsoul
+        username: acessodisp
+        password: acessodisp 
+        initialize: false
+        initial-size: 1
+        max-active: 3
+        min-idle: 1
+        max-idle: 3
+        max-wait: 15000
+    data:
+        jpa:
+            repositories: 
+                enabled: true
+    jpa:
+        database: oracle
+        database-platform: org.hibernate.dialect.Oracle10gDialect
+        show-sql: true
+        open-in-view: true
+    mail:
+        host: localhost
+        port: 25
+#        protocol: smtp
+#        smtp:
+#            auth: false
+#            starttls.enable: false
+#        from: me@localhost
+#        username:
+#        password:
+    messages:
+        basename: messages/messages
+        encoding: UTF-8
+        cache-seconds: -1
+    resources:
+        cache-period: 31556926
+#        cache-period: 1
+    thymeleaf:
+        cache: false
+
+banner:
+    location: classpath:/config/banner/banner.txt

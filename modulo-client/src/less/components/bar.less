@@ -1,0 +1,59 @@
+
+.style-crud-bar( @width, @padding, @position, @margin-top){
+	width: @width;
+	padding: @padding;
+	bottom: 0;
+	position: @position;
+	margin-top: @margin-top;
+}
+
+.crud-bar {
+	.style-crud-bar( 100%, 8px, absolute, 0.5%);
+}
+
+.crud-bar-relative {
+	.style-crud-bar( auto, 8px, relative, 10px);
+}
+
+@media all and (max-width: 1200px) {
+    .crud-bar {
+		.style-crud-bar( auto, 8px, relative, 10px);
+    }
+}
+
+@media all and (max-width: 1024px) {
+    .crud-bar {
+		.style-crud-bar( auto, 8px, relative, 10px);
+    }
+}
+
+@media all and (max-width: 750px) {
+    .crud-bar {
+		.style-crud-bar( auto, 8px, relative, 0);
+    }
+}
+
+.crud-bar.in-modal {
+	.style-crud-bar( auto, 8px, relative, 0px);
+}
+
+.pagination>.active>a, 
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover {
+	background-color: #4D7498;
+	border-color: #4D7498;
+}
+
+.pagination > .input-page > input {
+	width: 70px;
+    height: 34px;
+    border-radius: 0px;
+}
+
+.pagination > li > span.totalPages:hover {
+	background-color: white;
+}
+

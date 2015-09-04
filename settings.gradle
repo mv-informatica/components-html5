@@ -1,0 +1,3 @@
+//rootProject.name = 'modulo'
+
+include 'modulo-server-back', 'modulo-server-front', 'modulo-client'

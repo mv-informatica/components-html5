@@ -1,0 +1,70 @@
+def vJavaLang = '1.8'
+def javaProjects = [ project(':modulo-server-front'), project(':modulo-server-back') ]
+def bootProjects = javaProjects - project(':modulo-server-back')
+def gradleDir = "${rootProject.rootDir}/gradle"
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+buildscript {
+    ext.springRepo = 'http://repo.spring.io/libs-release'
+
+    repositories {
+    	mavenCentral()
+        maven { 
+       		url springRepo
+       		url 'http://repo.spring.io/libs-snapshot'
+       	}
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE"
+    }
+}
+
+configure(allprojects) {
+    apply plugin: 'eclipse'
+}
+
+configure(javaProjects) {
+    apply plugin: 'java'
+
+    targetCompatibility = vJavaLang
+    sourceCompatibility = vJavaLang
+
+    repositories {
+        maven { url springRepo }
+    }
+
+    dependencies {
+        compile 'org.projectlombok:lombok'
+        testCompile 'junit:junit'
+        testCompile 'org.hamcrest:hamcrest-library'
+        testCompile 'org.mockito:mockito-core'
+    }
+
+    // Ensure that all Gradle-compiled classes are available to Eclipse's
+    // classpath.
+    eclipseClasspath.dependsOn testClasses
+
+    // Skip generation and removal of .settings/org.eclipse.jdt.core.prefs files
+    // during the normal `gradle eclipse` / `gradle cleanEclipse` lifecycle, as
+    // these files have been checked in with formatting settings imported from
+    // style/sagan-format.xml and style/sagan.importorder.
+    // See http://www.gradle.org/docs/current/userguide/eclipse_plugin.html
+    eclipseJdt.onlyIf { false }
+    cleanEclipseJdt.onlyIf { false }
+}
+
+configure(bootProjects) {
+    apply plugin: 'spring-boot'
+    //apply from: "$gradleDir/deploy.gradle"
+
+    springBoot.backupSource = false
+    //bootRun.dependsOn writeGitPropertiesFile
+
+    dependencies {
+        versionManagement 'io.spring.platform:platform-bom:2.0.0.BUILD-SNAPSHOT@properties'
+    }
+}

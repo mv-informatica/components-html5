@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+ xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute"
+ class="no-js">
+<meta charset="UTF-8"/>
+<body>
+
+<nav class="navbar navbar-default navbar-static-top" th:fragment="menu-top" id="top" th:background="@{/img/ApplicationControlBarSkin.png}">
+	 <div class="container-fluid">
+	    <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".grouped-menu">
+			    <span class="sr-only"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			</button>
+	    
+			<a class="navbar-brand" th:href="@{/}">
+			  <img th:src="@{/img/login/logo_soul.png}" alt="" class="logo-bar"/>
+			  
+			</a>
+	    </div>
+	    
+		<div class="collapse navbar-collapse grouped-menu" >
+			<span class="divider-vertical hidden-xs pull-left"></span>
+			<p class="navbar-text navbar-left app-title" th:text="#{appTitle}"></p>
+			
+			<ul class="nav navbar-nav navbar-right">
+			   <li class="divider-vertical hidden-xs"></li>
+		       <li class="btn-menu-top" data-placement="bottom" data:original-title="#{fullScreen}" data-toggle="tooltip">
+		       		<a class="navbar-brand" href="javascript:void(0);" data-placement="bottom" id="toggleFullScreen">
+		       			<i class="glyphicon glyphicon-fullscreen menu-top-icons mv-color-blue"></i>
+		       		</a>
+		       </li>
+		       
+		       <!-- 
+			       <li class="divider-vertical hidden-xs"></li>
+			       <li class="btn-menu-top" data-placement="bottom" data-original-title="Notificação" data-toggle="tooltip">
+			       		<a class="navbar-brand" href="javascript:void(0);">
+			       			<i class="glyphicon glyphicon-envelope menu-top-icons mv-color-blue"></i>
+			       		</a>
+			       </li>
+		        -->
+		        
+		       <li th:unless="${singleMenu}" class="divider-vertical hidden-xs"></li>
+		       <li th:unless="${singleMenu}" class="btn-menu-top" data-placement="bottom" data:original-title="#{expandMenuLateral}" data-toggle="tooltip">
+		       		<a class="navbar-brand" href="javascript:void(0);" data-placement="bottom" id="menu-toggle">
+		       			<i class="glyphicon glyphicon-cog menu-top-icons mv-color-blue"></i>
+		       		</a>
+		       </li>
+		        
+		       <li class="divider-vertical hidden-xs"></li>
+		       <li class="btn-menu-top" data-placement="bottom" data:original-title="#{help}" data-toggle="tooltip">
+		       		<a data-toggle="modal" href="#helpModal" class="navbar-brand">
+		       			<i class="glyphicon glyphicon-question-sign menu-top-icons mv-color-blue"></i>
+		       		</a>
+		       </li>
+		       
+		       <li class="divider-vertical hidden-xs"></li>
+		       <li class="btn-menu-top logout" data-placement="bottom" data:original-title="#{exit}" data-toggle="tooltip">
+					<a class="navbar-brand" data-toggle="modal" href="#confirmationLogout">
+		       			<i class="fa fa-power-off menu-top-icons mv-color-blue"></i>
+		       		</a>
+		       </li>
+		     </ul>
+		     
+		     <div class="nav navbar-nav topnav app-system-info">
+		    	<p class="navbar-text text-nowrap hidden-xs">
+		    		<span th:text="'| ' + #{systemVersion}"></span> <span th:text="${version}"></span> <span th:text="'| ' + #{databaseVersion}"></span> <span th:text="${session.versaoBanco}"></span>
+		    		<br/> <span th:text="${#dates.format(#dates.createToday(), 'dd/MM/YYYY')}+' | '"></span> <span id="relogio"></span> 
+		    	</p>
+		    </div>
+		</div>
+	  </div>
+	  
+	  <div id="confirmationLogout" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" style="display: none;">
+		  <div class="modal-body">
+		    <p>Deseja realmente desconectar o usuário logado atualmente ?</p>
+		  </div>
+		  <div class="modal-footer">
+		    <button type="button" data-dismiss="modal" class="btn btn-default">Não</button>
+		    <a role="button" class="btn btn-default" data-toggle="modal" th:href="@{/logout}">Sim</a>
+		  </div>
+	</div>
+</nav>
+
+
+<div id="helpModal" class="modal fade" th:fragment="modal-help"><!-- #helpModal -->
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			
+			<div class="modal-body">
+				<p>
+				  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+				  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+</body>
+</html>

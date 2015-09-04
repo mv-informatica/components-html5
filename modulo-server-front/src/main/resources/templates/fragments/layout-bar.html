@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute"
+ class="no-js">
+<meta charset="UTF-8"/>
+<body>
+	<!-- Search Group Buttons -->
+	<div class="row top-buffer" th:fragment="search-group-button" >
+		<button type="submit" id="btnSearch" class="btn btn-default"
+				data:original-title="#{pesquisar}" 
+				data:toggle="tooltip" 
+				data:bind="${dataBindSearch}">
+				<i class="fa fa-search mv-color-green"></i>
+		</button>
+		
+		<button class="btn btn-default" type="reset" id="btnClear"
+				th:if="${btnClear}"
+				data:original-title="#{limpar}" 
+				data:toggle="tooltip" 
+				data:bind="${dataBindClear}">
+           		<i class="fa fa-eraser mv-color-green"></i>
+         </button>
+	</div>
+	
+	<!-- CRUD default bar -->
+	<div th:fragment="default-crud-bar" th:class="${relativeBar != null and relativeBar ? 'row well crud-bar-relative' : 'row well crud-bar'}">
+		<div class="col-md-*">
+			<button class="btn btn-default" type="button" id="btnSave" name="nameBtnSave" 
+					th:if="${saveButtonTypeSubmit} == false and ${saveButton}" 
+					th:formaction="@{__${saveActionForm}__}" 
+					th:disabled="${disabledSaveButton}" 
+					data:placement="top" 
+					data:original-title="#{salvar}" 
+					data:toggle="tooltip"
+					data:bind="${dataBindSave}">
+	         		<i class="fa fa-save mv-color-green"></i>
+	        </button>
+
+			<button class="btn btn-default" type="submit" id="btnSave" name="nameBtnSave" 
+					th:if="(${saveButtonTypeSubmit} == true or ${saveButtonTypeSubmit} == null) and ${saveButton}" 
+					th:formaction="@{__${saveActionForm}__}" 
+					th:disabled="${disabledSaveButton}" 
+					data:placement="top" 
+					data:original-title="#{salvar}" 
+					data:toggle="tooltip"
+					data:bind="${dataBindSave}">
+	         		<i class="fa fa-save mv-color-green"></i>
+	        </button>
+	        
+	        <button class="btn btn-default" type="reset" id="btnClear"
+					th:if="${clearButton}"
+					th:disabled="${disabledClearButton}"
+					data:placement="top" 
+					data:original-title="#{limpar}" 
+					data:toggle="tooltip"
+					data:bind="${dataBindClear}">
+		      		<i class="fa fa-eraser mv-color-green"></i>
+	        </button>
+	        
+	      	<a  type="button" class="btn btn-default" id="cancelButton"
+	      		th:if="${cancelButton}"
+	      		th:disabled="${disabledCancelButton}"
+		      	th:href="@{__${urlCancel}__}" 
+		      	data:placement="top" 
+		      	data:original-title="#{voltar}" 
+		      	data:toggle="tooltip"
+		      	data:bind="${dataBindCancel}">
+            	<i class="fa fa-reply mv-color-green"></i>
+	        </a>
+	        
+	        <a  class="btn btn-default" id="newButton"
+	         	th:if="${newButton}"
+	         	th:disabled="${disabledNewButton}"
+		        th:href="@{__${urlNew}__}"  
+		        data:placement="top" 
+		        data:original-title="#{novo}" 
+		        data:toggle="tooltip"
+		        data:bind="${dataBindNew}">
+            	<i class="fa fa-file mv-color-green"></i>
+	        </a>
+		</div>
+	</div>
+	
+	<!-- Modal-Group-Button-Footer -->
+	<div class="modal-footer" th:classappend="${addClass}" th:fragment="modal-group-button-footer">
+	    <button th:type="${typeSucess != null ? typeSucess:'submit'}" th:name="${nameSucess}" th:id="${idSucess}" class="btn btn-default" data:bind="${dataBindSucess}">
+	    	<span class="glyphicon glyphicon-ok mv-color-green"></span>
+	   		<span th:if="${sucessLabel}" th:text="#{${sucessLabel}}"></span> 
+	    </button>
+	    
+	    <button type="button" class="btn btn-default" data-dismiss="modal" th:name="${nameCancel}" th:id="${idCancel}"  data:bind="${dataBindCancel}">
+	 		<span class="glyphicon glyphicon-ban-circle mv-color-green"></span>
+	 		<span th:if="${cancelLabel}" th:text="#{${cancelLabel}}"></span> 
+	 	</button>
+	</div>
+
+	<!-- PaginationBar -->
+	<div class="paginationbar col-md-*" th:fragment="paginationbar">
+		<nav class="text-center" th:if="${page != null and page.totalPages > 0}" 
+			 data:totalPages="${page?.totalPages}"
+			 data:size="${page?.size}"
+			 data:idToRender="${idToRender}"
+			 data:method="${method}"
+			 data:ajax="${ajax == null ? true : ajax}">
+		
+			<ul class="pagination">
+				<li th:class="${page != null ? page.first : ''} ? 'disabled' : ''">
+					<span th:if="${page?.first}">
+						<i class="glyphicon glyphicon-backward mv-color-blue"></i>
+					</span>
+					<a class="mv-color-blue" th:unless="${page?.first}" href="#" data:number="0" th:title="#{primeiraPagina}" >
+					   <i class="glyphicon glyphicon-backward mv-color-blue"></i>
+					</a>
+				</li>
+
+				<li th:class="${page?.hasPrevious()} ? '' : 'disabled'">
+					<span th:unless="${page?.hasPrevious()}">
+						<i class="glyphicon glyphicon glyphicon-play inverted-icon mv-color-blue"></i>
+					</span>
+					<a th:if="${page?.hasPrevious()}" href="#" th:title="#{paginaAnterior}">
+						<i class="glyphicon glyphicon glyphicon-play inverted-icon mv-color-blue"></i>
+					</a>
+				</li>
+				
+				<li class="input-page pull-left">
+					<input type="number" class="form-control form-group-sm" id="idActualPage" maxlength="4" name="actualPage" th:value="${page?.number + 1}"></input>
+				</li>
+				
+				<li disabled="disalbed">
+					<span class="totalPages" th:text="' de ' + ${page?.totalPages}"></span>
+				</li>
+				<li th:class="${page?.hasNext()}? '' : 'disabled'">
+					<span th:unless="${page?.hasNext()}">
+						<i class="glyphicon glyphicon glyphicon-play mv-color-blue"></i>
+					</span>
+					<a th:if="${page?.hasNext()}" href="#" th:title="#{proximaPagina}">
+					 <i	class="glyphicon glyphicon glyphicon-play mv-color-blue"></i>
+					</a>
+				</li>
+
+				<li th:class="${page != null ? page.last : ''} ? 'disabled' : ''">
+					<span th:if="${page?.last}">
+						<i class="glyphicon glyphicon glyphicon-forward mv-color-blue"></i>
+					</span>
+					<a th:unless="${page?.last}" href="#" th:title="#{ultimaPagina}"  data:number="${page?.last}" >
+						<i class="glyphicon glyphicon glyphicon-forward mv-color-blue"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</body>
+</html>

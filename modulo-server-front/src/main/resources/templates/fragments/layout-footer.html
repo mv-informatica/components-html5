@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute"
+ class="no-js">
+<meta charset="UTF-8"/>
+	<footer th:fragment="footer">
+	  <div class="container-fluid">
+	  	<div class="row">
+			<div class="col-md-3">
+				<button type="button" class="btn btn-default btn-xs pull-left logged-user-icon" disabled="disabled">
+			  		<i class="glyphicon glyphicon glyphicon-user mv-color-green"></i>
+			  	</button>
+			  	<span class="logged-user-name pull-left" th:text="${session.usuario} != null ? (${session.usuario.login} +' - '+ ${session.usuario?.authority?.descricao}) : ''"></span>
+			</div>
+		</div>
+	  </div>
+	</footer>
+</html>

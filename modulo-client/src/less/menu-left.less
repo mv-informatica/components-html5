@@ -1,0 +1,67 @@
+@import "utils/variables.less";
+@import "utils/mixins.less";
+
+@desktop: ~"( max-width :1024px)";
+
+.link-style( @color ){
+	color:@color;
+	font-size: 12px;
+}
+.ul-active-style( @color ){
+	background-color: @color;
+	.box-shadow( 0, 1px, 3px, @mv-menu-left-color-division);
+	color: @black;
+	border-top: 1px solid white;
+}
+
+#menu {
+	ul{
+		background-color: rgba(255, 255, 255, 0.3);
+	}
+	>li>a {
+		text-shadow: none !important;	
+	}
+	>li ul a {
+		span, i {
+			.link-style( @mv-color-blue );
+		}
+		&:hover span, &:hover i{
+			.link-style( @black );	
+		}
+	}
+	>li.active>a, 
+	>li>ul>li.active>a {
+		.ul-active-style( @mv-menu-left-active-blue );
+		&:hover {
+			.ul-active-style( @mv-menu-left-active-blue-hover );
+		}
+	}
+}
+
+#left {
+	.transition( all, .3s, ease-in-out );
+	.width-height( 220px, 100% );
+	position: relative;
+	float: left;
+	left: auto;
+	overflow: hidden;
+}
+
+@media @desktop {
+	#left {
+		width: 200px;
+	}
+}
+
+.sidebar-left-hidden #left {
+	width: 0;
+	visibility: hidden
+}
+
+.sidebar-left-mini #left {
+	width: 50px
+}
+
+.sidebar-left-opened #left {
+	left: 0
+}

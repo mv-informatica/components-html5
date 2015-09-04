@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  class="no-js">
+	<head th:replace="fragments/layout :: htmlhead" />
+	
+	<body role="document" th:class="${session?.usuario?.hasSingleRoleWithUri() ? 'sidebar-left-hidden' : ''}">
+		<th:block th:unless="${session.externalRequest}">
+			<div th:replace="fragments/layout-menu-top :: menu-top(singleMenu=${session?.usuario?.hasSingleRoleWithUri()})"></div>
+		</th:block>
+		
+		<div class="container-fluid main">
+			<div class="row main">
+				 <th:block th:unless="${session.externalRequest}">
+					 <div class="col-md-* left-side">
+						<div th:replace="fragments/layout-menu :: menu-left"></div> 	
+					 </div>
+				 </th:block>
+				 
+				 <div class="col-md-* right-side border-left">
+				 	  <div layout:fragment="content" class="fill"> 
+					  		<div class="row-fluid fill">
+					   			<div class="col-lg-12 fill">
+									<div th:replace="fragments/layout-message :: alerts"></div>
+									<div layout:fragment="form"></div>
+									<div layout:fragment="modals"></div>
+								</div><!-- /.col-lg-12 -->
+							</div><!-- /.row-fluid -->
+					 </div><!--#content -->
+				 </div>
+			</div>
+		</div>
+		
+		<th:block th:unless="${session.externalRequest}">
+			<footer th:replace="fragments/layout-footer :: footer"></footer>
+		</th:block>
+		
+		<div th:replace="fragments/layout-menu :: modal-help"></div>
+		
+		<th:block layout:fragment="scripts">
+			<th:block th:replace="fragments/layout :: scripts" th:unless="${defaultValidator}"></th:block>
+		</th:block>
+	</body>
+</html>

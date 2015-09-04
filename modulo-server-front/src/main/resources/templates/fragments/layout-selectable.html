@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute"
+ class="no-js">
+<meta charset="UTF-8"/>
+<body>
+	<!-- Select-Field -->
+	<div class="form-group" th:classappend="${addClass}" th:fragment="select-field">
+		<label th:if="${label}" class="control-label" th:classappend="${required} ? 'required' : ''" th:for="${nameField}" th:id="__${idField}__+Label">
+			<span th:text="#{${label}}"></span>
+		</label>
+		
+		<select	th:if="${field}" 
+				th:name="${nameField}" 
+				th:field="__${field}__" 
+				class="form-control select-field" 
+				th:title="${title}"
+			    th:disabled="${disabled}" 
+			    data:bv-notempty="${required}" 
+			    th:autofocus="${autofocus}" 
+			    th:placeholder="${placeholder}" 
+			    th:id="${idField}"
+			    data:bind="${dataBind}">
+			    
+			   <option th:if="${prompt}" th:text="${textPrompt}" th:value="${valuePrompt}" />
+			   <option th:if="${list}" th:each="i : ${list}" th:text="${i.__${text}__}" th:value="${i.__${value}__}"/>
+			   <option th:if="${listEnum}" th:each="i : ${listEnum}" th:text="#{${i}}" th:value="${i}"/>
+		</select>
+		
+		<select th:unless="${field}"
+		        th:name="${nameField}"
+		        class="form-control select-field"
+		        th:title="${title}"
+			    th:disabled="${disabled}"
+			    data:bv-notempty="${required}"
+			    th:autofocus="${autofocus}" 
+			    th:placeholder="${placeholder}"
+			    th:id="${idField}"
+			    data:bind="${dataBind}">
+			    
+			   <option th:if="${prompt}" th:text="${textPrompt}" th:value="${valuePrompt}" />
+			   <option th:if="${list}" th:each="i : ${list}" th:text="${i.__${text}__}" th:value="${i.__${value}__}"/>
+			   <option th:if="${listEnum}" th:each="i : ${listEnum}" th:text="#{${i}}" th:value="${i}"/>
+		</select>
+	</div>
+	
+	
+	<!-- Checkbox-Field -->
+	<div class="checkbox" th:classappend="${addClass}" th:fragment="checkbox-field">
+		<input  th:if="${field}"
+				type="checkbox" 
+				th:id="${idField}"
+				th:name="${nameField}"
+				th:disabled="${disabled}"
+				th:field="__${field}__" 
+				th:value="__${value}__" 
+				th:autofocus="${autofocus}"
+				data:bv-notempty="${required}"
+				data:bind="${dataBind}"/> 
+				
+		<input  th:unless="${field}"
+				type="checkbox" 
+				th:id="${idField}"
+				th:name="${nameField}"
+				th:disabled="${disabled}"
+				th:value="${value}" 
+				th:autofocus="${autofocus}"
+				data:bv-notempty="${required}"
+				data:bind="${dataBind}"/> 
+				
+		<label th:for="${idField}">
+			<span th:text="#{${label}}" ></span>
+		</label>
+	</div>
+	
+	<!-- Radio-Field -->
+	<div class="radio radio-inline" th:classappend="${addClass}" th:fragment="radio-field">
+		<input  th:if="${field}"
+				type="radio" 
+				th:id="${idField}"
+				th:disabled="${disabled}" 
+				th:field="__${field}__"
+				th:value="__${value}__"
+				th:autofocus="${autofocus}"
+				data:bv-notempty="${required}" 
+				data:bind="${dataBind}" /> 
+				
+		<input  th:unless="${field}"
+				type="radio" 
+				th:id="${idField}"
+				th:name="${nameField}"
+				th:disabled="${disabled}"
+				th:value="${value}" 
+				th:autofocus="${autofocus}"
+				data:bv-notempty="${required}" 
+				data:bind="${dataBind}" /> 
+			
+		<label th:for="${idField}"> 
+			<span th:text="${label} != null ?  #{${label}}:#{geral.sim}"></span>
+		</label>
+	</div>
+</body>
+</html>

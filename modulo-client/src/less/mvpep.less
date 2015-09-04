@@ -1,0 +1,227 @@
+@import "utils/variables.less";
+@import "utils/mixins.less";
+
+body, .row-fluid.fill, .row.main, .inner.fill {
+	background-color: @mvPep-color-background;
+}
+
+.form-control {
+	height: 24px;
+	font-size: 11.7px;
+	border-radius: 0px;
+}
+
+.form-group > select{
+	padding-top: 0px;
+	padding-bottom: 0px;	
+}
+
+.form-group label, .checkbox-inline span {
+	font-weight: normal;
+	font-size: 11.7px;
+}
+
+.form-control:focus {
+  border-color: #FBBE95;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(255, 0, 0, 0.6);
+}
+
+.input-group-addon {
+	height: 23px;
+	font-size: 7px;
+	border-radius: 0px;
+}
+
+.tt-input, .twitter-typeahead{
+	padding-top: 0px;
+	padding-bottom: 0px;	
+}
+
+.form-control.typeahead.tt-hint {
+	padding-top: 0px;
+	padding-bottom: 0px;	
+}
+
+fieldset {
+	legend {
+		border: 0px !important;
+		font-weight: normal;
+		font-size: 11.7px;
+		ul {
+		    list-style-type: square;
+		    padding-left: 0px;
+		}
+		ul > li {
+		    color: @mv-color-blue;
+		    font-size: 21px;
+		}
+		ul > li > span {
+		    color: @black;
+		    font-size: 11.7px;
+		}
+		
+		ul > li > hr {
+			float: right;
+			margin-top: 18px !important;
+		}
+	}
+}
+
+.table-responsive > table > thead, .table.table-condensed.table-bordered.table-striped.table-hover.fixed-table > thead {
+	background-color: @mvPep-color-pagination;
+	font-size: 10.9px;
+}
+
+.table-responsive > table > thead > tr > th, .table.table-condensed.table-bordered.table-striped.table-hover.fixed-table > thead > tr > th {
+	font-weight: normal;
+}
+
+.table-responsive > table > tbody > tr > td, .table.table-condensed.table-bordered.table-striped.table-hover.fixed-table > tbody > tr > td {
+	font-size: 10.9px;
+}
+
+.table tbody {
+	tr:hover td {
+	    background: @mv-menu-left-active-blue-hover !important;    
+	}	
+	tr.selected td {
+		background: @mv-menu-left-active-blue-hover !important;   
+	}
+}
+
+.row.top-buffer > button, .top-buffer > button, .row .well > div > button, .table-responsive > table > tbody > tr > td > a,
+.table.table-condensed.table-bordered.table-striped.table-hover.fixed-table > tbody > tr > td > button {
+	border-radius: 0px;
+	padding-top: 0px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 0px;
+	height: 25px;
+	margin-bottom: 6px;
+	background-image: none;
+	background-color: @mvPep-color-buttons;
+	margin-right: 4px;
+}
+
+.row.top-buffer > button:hover, .top-buffer > button:hover, .row .well > div > button:hover,  .table-responsive > table > tbody > tr > td > a:hover,
+.table.table-condensed.table-bordered.table-striped.table-hover.fixed-table > tbody > tr > td > button:hover {
+	background-color: @mvPep-color-buttons-hover;
+	margin-right: 4px;
+}
+
+.btn-group.dropup > a {
+	border-radius: 0px;
+	padding-top: 2px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 0px;
+	height: 25px;
+	margin-bottom: 6px;
+	background-image: none;
+	background-color: @mvPep-color-buttons;
+	margin-right: 4px;
+}
+
+.table-responsive > table > tbody > tr > td > a, .table.table-condensed.table-bordered.table-striped.table-hover.fixed-table > tbody > tr > td > a {
+	border-radius: 0px;
+	padding-top: 3px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 0px;
+	height: 25px;
+	margin-bottom: 6px;
+	background-image: none;
+	background-color: @mvPep-color-buttons;
+	margin-right: 4px;
+}
+
+.table-responsive > table > tbody > tr > td > a:hover, .table.table-condensed.table-bordered.table-striped.table-hover.fixed-table > tbody > tr > td > a:hover {
+	background-color: @mvPep-color-buttons-hover;
+	margin-right: 4px;
+}
+
+.crud-bar-mvpep button, .form-actions button {
+	border-radius: 0px;
+	padding-top: 0px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 0px;
+	height: 36px;
+	width: 36px;
+	margin-bottom: 6px;
+	background-image: none;
+	background-color: @mvPep-color-buttons;
+	margin-right: 4px;
+}
+
+.crud-bar-mvpep button > i,  .crud-bar-mvpep a > i, crud-bar-mvpep button > i {
+	  font-size: 23px;
+}
+
+.crud-bar-mvpep > .btn-group.dropup > a {
+	border-radius: 0px;
+	padding-top: 3px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 0px;
+	height: 36px;
+	width: 36px;
+	margin-bottom: 6px;
+	background-image: none;
+	background-color: @mvPep-color-buttons;
+	margin-right: 4px;
+}
+
+.crud-bar-mvpep > .btn-group.dropup >a:hover {
+	background-color: @mvPep-color-buttons-hover;
+	margin-right: 4px;
+}
+
+.crud-bar-mvpep {
+	bottom: 0;
+	position: absolute;
+	width: 90%;
+}
+
+.modal-content {
+	border-radius: 0px;
+	background-color: @mvPep-color-modal;
+}
+
+.modal-content > .modal-header {
+	background-color: @mvPep-color-modal-head;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.modal-content > .modal-header > h4, .modal-content .control-label span {
+	font-weight: normal;
+	font-size: 11.7px;
+}
+
+.modal-body {
+	background-color: @mvPep-color-modal;
+}
+
+.pagination > li > a, .pagination > li > span, .pagination > li.disabled > span {
+	border-radius: 0px !important;
+	background-color: @mvPep-color-pagination;
+	font-size: 10.9px;
+}
+
+.pagination > .disabled >span:hover {
+	background-color: @mvPep-color-buttons-hover;
+}
+
+.date-field-periodo > .input-group.date > input, .date-field-periodo span {
+	border-radius: 0px !important;	 
+}
+
+.date-field-periodo span.input-group-addon.to {
+	background-color: @mvPep-color-modal !important;
+	font-size: 12px;
+}
+
+.date-field-periodo div.calendar {
+	border-radius: 0px !important;	
+}

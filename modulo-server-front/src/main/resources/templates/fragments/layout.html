@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute">
+	<!-- Head -->
+	<head th:fragment="htmlhead">
+		<meta charset="UTF-8"></meta> <!--Default Charset-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!--IE Compatibility modes-->
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--Mobile first-->
+		<meta name="description" th:content="${descriptionPage}"/>
+		<meta name="author" th:content="${author}"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<meta name="_csrf" th:content="${_csrf?.token}"/>
+    	<meta name="_csrf_header" th:content="${_csrf?.headerName}"/>
+		
+		<title th:text="#{appTitle} + (${title} ? ' - ' + #{${title}} : '')"></title>
+		
+		<link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon" />
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/lib/bootstrap/dist/css/bootstrap.min.css}"/> 
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/lib/bootstrap/dist/css/bootstrap-theme.min.css}"/>
+		
+		<!-- Font Awesome -->
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/lib/font-awesome/css/font-awesome.min.css}"/>
+		
+		<!-- Bootstrap Validator -->
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/lib/bootstrapvalidator/dist/css/bootstrapValidator.min.css}"/>
+			
+		<!-- Bootstrap DatePicker -->
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css}"/>
+		
+		<!-- Bootstrap TimePicker -->
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/lib/bootstrap-timepicker/css/bootstrap-timepicker.min.css}"/>
+
+		<!-- Awesome Bootstrap Checkbox -->
+	    <link rel="stylesheet" type="text/css" media="all" th:href="@{/lib/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}"/>
+		
+		<!-- Bootstrap-table -->
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/lib/bootstrap-table/dist/bootstrap-table.min.css}"/>
+		
+		<!-- Bootstrap-Modal- -->
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/lib/bootstrap-modal/css/bootstrap-modal.css}"/> 
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/lib/bootstrap-modal/css/bootstrap-modal-bs3patch.css}"/>
+		
+		<!-- Menu Style -->
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/menu.css}"/>
+
+		<!-- MV Theme -->
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/menu-left.css}"/>
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/menu-top.css}"/>
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/components.css}"/>
+	    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/application.css}"/>	
+	    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/footer.css}"/>	
+	    
+	    <!-- MV Theme Pep -->
+		<link th:if="${session.externalRequest}" rel="stylesheet" type="text/css" media="all" th:href="@{/css/mvpep.css}"/> 	    
+		
+		<!-- Pace -->
+  		<link th:href="@{/lib/pace/themes/blue/pace-theme-mac-osx.css}" rel="stylesheet" />
+  		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/progress.css}"/>
+		
+		<!-- Jquery core Javascript -->
+		<script type="text/javascript" charset="UTF-8" th:src="@{/lib/jquery/dist/jquery.min.js}"></script>
+	</head>
+
+	<body>
+      	<th:block th:fragment="scripts">
+	        <!-- Bootstrap core JavaScript-->
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrap/dist/js/bootstrap.min.js}"></script>
+			
+			<!-- Knockout JS -->
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/knockout/dist/knockout.js}"></script>
+			
+			<!-- Bootstrap validator with brazilian locale JavaScript -->
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrapvalidator/dist/js/bootstrapValidator.min.js}"></script>
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrapvalidator/dist/js/language/pt_BR.js}"></script>
+			
+			<!-- Bootstrap Datepicker with brazilian locale -->
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
+			
+			<!-- Bootstrap Timepicker -->
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrap-timepicker/js/bootstrap-timepicker.min.js}"></script>
+			
+			<!-- Twitter Typeahead -->
+	        <script type="text/javascript" charset="UTF-8" th:src="@{/lib/typeahead.js/dist/typeahead.bundle.min.js}"></script>
+	        
+	        <!-- Metis Menu Plugin JavaScript -->
+		    <script type="text/javascript" charset="UTF-8" th:src="@{/lib/metisMenu/dist/metisMenu.min.js}"></script>
+		    
+		    <!-- Screenfull -->
+		    <script type="text/javascript" charset="UTF-8" th:src="@{/lib/screenfull/dist/screenfull.js}"></script>
+		    
+			<!-- Bootstrap growl -->
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js}"></script>
+			
+		    <!-- Jquery mask -->
+		    <script type="text/javascript" charset="UTF-8" th:src="@{/lib/jQuery-Mask-Plugin/dist/jquery.mask.min.js}"></script>
+			
+			<!-- Confirmation -->
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrap-confirmation2/bootstrap-confirmation.min.js}"></script>			
+			
+			<!-- bootstrap-table -->
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrap-table/dist/bootstrap-table.min.js}"></script>
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrap-table/dist/locale/bootstrap-table-pt-BR.min.js}"></script>
+			
+			<!-- Bootstrap-Modal- -->
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrap-modal/js/bootstrap-modal.js}"></script>
+			<script type="text/javascript" charset="UTF-8" th:src="@{/lib/bootstrap-modal/js/bootstrap-modalmanager.js}"></script>
+
+			<!-- Pace: Configurações para a barra de progresso.-->
+			<script>window.paceOptions = { ajax: { trackMethods : ['GET', 'POST']}};</script>
+			<script type="text/javascript" charset='UTF-8' th:src='@{/lib/pace/pace.min.js}'></script>
+			
+			 <!-- Modulo Components -->
+			<script type="text/javascript" charset="UTF-8" th:src="@{/components/components.js}"></script>
+		</th:block>
+	</body>
+</html>

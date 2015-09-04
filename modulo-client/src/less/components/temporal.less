@@ -1,0 +1,68 @@
+.style-msg-validator(@color, @bg-color, @border-color){
+	color: @color;
+	background-color: @bg-color;
+	border-color: @border-color;		
+}
+
+.datepicker {
+	z-index: 1151 !important;
+}
+
+.date-field-periodo {
+	padding-top: 3px;
+	
+	.input-small.form-control {
+		border: 1px solid #ccc;
+		border-radius: 4px !important;
+	}
+	
+	.input-group-addon.calendar {
+		line-height: 1;
+		color: #555;
+		text-align: center;
+		background-color: #eee;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		border-left: 0;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+	
+	.input-group-addon.to {
+		background-color: #ffffff !important;
+		border: none;
+	}
+	
+	input.input-small.form-control {
+		padding-right: 0px;
+		text-align: left;
+		border-top-right-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
+	}
+}
+
+.has-error {
+	input.input-small.form-control {
+		border-color: #a94442;
+	}
+	.input-group-addon.calendar {
+		.style-msg-validator(#a94442, #f2dede, #a94442);
+	}
+} 
+
+.has-success {
+	.input-group-addon.calendar {
+		.style-msg-validator(#3c763d, #dff0d8, #3c763d);
+	}
+	input.input-small.form-control {
+		border-color: #3c763d;
+	}
+} 
+
+.bootstrap-timepicker {
+	height: 30px;
+}
+
+span[disabled].input-group-addon { 
+	cursor: not-allowed;
+}

@@ -1,0 +1,71 @@
+//sourceSets {
+//    testUtil {
+//        java.srcDir 'src/test-util/java'
+//        resources.srcDir 'src/test-util/resources'
+//    }
+//}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:0.4.1.RELEASE'
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+    maven {
+    	url "http://repo.spring.io/libs-snapshot"
+    }
+	mavenLocal()
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:2.0.0.BUILD-SNAPSHOT'
+    }
+}
+
+// sagan-common is not technically a "Spring Boot" application--it is just a library.
+// However, we apply the spring-boot plugin here anyway in order to pick up boot's
+// default dependency versioning, such that we stay in sync with other modules that
+// are actually "boot"-style apps.
+//apply plugin: 'spring-boot'
+//bootRepackage.enabled = false
+
+dependencies {
+    //versionManagement 'io.spring.platform:platform-bom:2.0.0.BUILD-SNAPSHOT@properties'
+
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile "org.springframework.boot:spring-boot-starter-data-rest"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-hibernate4"
+    compile "com.oracle.drivers:ojdbc7:12.1.0.1"
+    compile "org.apache.commons:commons-lang3"
+    compile "org.projectlombok:lombok"
+
+    // datasource and connection pool dependencies
+    //compile 'org.apache.tomcat:tomcat-jdbc'
+
+    // for use in on-the-fly database setup and migrations
+    //compile 'org.flywaydb:flyway-core'
+
+    // jackson, for JSON and XML serialization
+    //compile "com.fasterxml.jackson.core:jackson-annotations"
+    //compile "com.fasterxml.jackson.core:jackson-databind"
+
+
+    //testUtilCompile "junit:junit"
+    //testUtilCompile sourceSets.main.output
+    //testUtilCompile configurations.compile
+    //testUtilRuntime configurations.runtime
+
+    // pick up common test utility classes
+   // testCompile sourceSets.testUtil.output
+
+    // for use of spring-test's MatcherAssertionErrors.*
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+}
